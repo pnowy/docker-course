@@ -14,7 +14,9 @@ Wykład 6. Instalacja Windows
 
 Wykład 7. Instalacja MacOS
 
-Wykład 7. Podsumowanie rozdziału
+Wykład 8. Podsumowanie rozdziału
+
+---
 
 Wykład 9. Komendy - wprowadzenie
 
@@ -73,6 +75,8 @@ Wykład 17. Sieci - DNS
     - komunikacja pomiędzy kontenerami
     -- link option (for default bridge)
 
+---
+
 Wykład 18. Obrazy - wprowadzenie
 
     - czym jest obraz i do czego służą obrazy
@@ -106,6 +110,8 @@ Wykład 24. Obrazy porządki
 
     - usuwanie nieużywanych obrazów
 
+---
+
 Wykład 25. Przechowywanie danych w kontenerach - wprowadzenie
 
     - podejście do przechowywania danych w architekturze kontenerów
@@ -114,6 +120,8 @@ Wykład 25. Przechowywanie danych w kontenerach - wprowadzenie
 Wykład 26. Volumes
 
 Wykład 27. Bind mounts
+
+---
 
 Wykład 28. Docker compose - wprowadzenie
 
@@ -124,11 +132,15 @@ Wykład 29. Docker compose - komendy
 
 Wykład 30. Docker compose - build
 
+---
+
 Wykład 31. Docker Hub
 
 Wykład 32. Docker registry - lokalnie
 
 Wykład 33. Pozostałe opcje
+
+---
 
 Wykład 34. Podsumowanie zdobytej wiedzy
 
