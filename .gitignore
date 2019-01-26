@@ -1,0 +1,3 @@
+/docker-compose/commands/wordpress/wp-app/
+/docker-compose/introduction/elasticsearch/esdata/
+node_modules/

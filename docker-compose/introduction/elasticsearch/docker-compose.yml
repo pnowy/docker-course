@@ -1,0 +1,14 @@
+version: '3.7'
+
+# docker container run -p 9200:9200 -e cluster.name=kursdockera -v $(pwd)/esdata:/usr/share/elasticsearch/data docker.elastic.co/elasticsearch/elasticsearch:6.5.4
+
+services: 
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.5.4
+    volumes:
+      - ./esdata:/usr/share/elasticsearch/data
+    environment:
+      - cluster.name=kursdockera
+    ports:
+        - 9200:9200
