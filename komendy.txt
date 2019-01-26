@@ -10,7 +10,7 @@ docker version
 # dokładniejsze info o aktualnym stanie konfiguracji Dockera
 docker info
 
-# 2.2 Uruchamiania kontenera
+# uruchamianie kontenera        ---------------------------------------------------------------------------------
 
 docker container run --publish 8080:80 nginx
     - pobranie obrazu nginx z registry Docker Hub
@@ -26,7 +26,7 @@ docker container top <container-id>
 
 docker container --help
 
-# 2.4 Wiele kontenerów
+# wiele kontenerów              ---------------------------------------------------------------------------------
 
 docker container run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -d docker.elastic.co/elasticsearch/elasticsearch:6.5.4
 
@@ -39,13 +39,13 @@ docker run -d --name rabbit-in-the-hole -p 8080:15672 rabbitmq:3-management
 docker container logs <container-id> -f
 docker image ls
 
-# 2.5 Monitoring kontenerów
+# monitorowanie kontenerów      ---------------------------------------------------------------------------------
 
 docker container top
 docker container inspect
 docker container stats
 
-# 2.6 Dostęp do terminala
+# dostęp do terminala           ---------------------------------------------------------------------------------
 
 # -i => tryb interaktywny, przesyła standardowy output do naszej konsoli
 # -t => sumuluje terminal, podobnie jak SSH
@@ -54,14 +54,14 @@ docker container run -it debian
 docker container start -ai <container>
 docker container exec -it <container> <command>
 
-# 2.7 Docker - sieci
+# docker - sieci                ---------------------------------------------------------------------------------
 
 docker network --help
 docker network ls
 docker network inspect bridge
 docker container inspect --format '{{ .NetworkSettings.IPAddress }}' <container>
 
-# 2.8 Sieci - zarządzanie
+# sieci - zarządzanie & DNS     ---------------------------------------------------------------------------------
 
 docker network create --driver=bridge {network}
 docker container run -d --network skynet nginx
@@ -76,19 +76,19 @@ docker network disconnect {network} {container}
 
 - docker run --name wordpressdb -e MYSQL_ROOT_PASSWORD=wordpress -e MYSQL_DATABASE=wordpress -d mysql:5.7
 - docker run -e WORDPRESS_DB_PASSWORD=wordpress -d --name wordpress --link wordpressdb:mysql -p 80:80  wordpress
-- docker --link {containerId or name}:{internal alis}
+- docker --link {containerId or name}:{internal alias}
 
-# 3.0 Obrazy - wprowadzenie
+# obrazy - wprowadzenie         ---------------------------------------------------------------------------------
 
 docker image ls
 docker image pull nginx
 
-# 3.1 Obrazy - warstwy
+# obrazy - warstwy              ---------------------------------------------------------------------------------
 
 docker image history nginx:latest
 docker image inspect nginx:latest
 
-# 3.2 Obrazy - tagowanie
+# obrazy - tagowanie            ---------------------------------------------------------------------------------
 
 docker image tag ubuntu:latest pnowy/ubuntu:latest
 docker image push pnowy/ubuntu
@@ -99,14 +99,20 @@ docker image tag pnowy/ubuntu:latest pnowy/ubuntu:1.0
 docker container commit {containerid} pnowy/ubuntu:curl
 docker image push pnowy/ubuntu:curl
 
+# obrazy - Dockerfile           ---------------------------------------------------------------------------------
+
 # REFERENCE: https://docs.docker.com/engine/reference/builder/
 
 docker image build -t myimage:mytag .
 
+# obrazy - porządki             ---------------------------------------------------------------------------------
+
+docker system prune -a
+
+# volumes                       ---------------------------------------------------------------------------------
+
 curl -x POST http://localhost:3000/przemek1
 curl -x POST http://localhost:3000/przemek2
-
-# 4.1 Volumes
 
 docker build -t nodesave .
 docker image inspect nodesave:latest
@@ -119,10 +125,22 @@ docker container run -d -p 3000:3000 --mount 'src=8ca2ef8645bd40700db261f29176d3
 docker container run -d -p 3000:3000 -v 8ca2ef8645bd40700db261f29176d3b1502bd1b40ee7127d62987c0398b7819c:/appdata nodesave
 docker container run -d -p 3000:3000 --mount 'src=nodesave-data,dst=/appdata' nodesave
 
+# bind mounts                   ---------------------------------------------------------------------------------
+
 run -v /Users/przemek/data:/path/data # (mac/linux)
 run -v //c/Users/przemek/data:/path/data # windows
 
-# 32. Docker registry - lokalnie
+# docker compose                ---------------------------------------------------------------------------------
+
+docker-compose up
+docker-compsoe up -d
+docker-compose down
+docker-compose ps
+docker-compose stop
+docker-compose logs
+docker-compose up --build
+
+# docker registry - lokalnie    ---------------------------------------------------------------------------------
 
 docker container run -d -p 5000:5000 --name private-registry -v $(pwd)/registry-data:/var/lib/registry registry:2
 docker container run -d -p 5000:5000 --name private-registry registry:2
