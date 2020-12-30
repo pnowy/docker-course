@@ -48,7 +48,7 @@ docker container stats
 # dostęp do terminala           ---------------------------------------------------------------------------------
 
 # -i => tryb interaktywny, przesyła standardowy output do naszej konsoli
-# -t => sumuluje terminal, podobnie jak SSH
+# -t => symuluje terminal, podobnie jak SSH
 docker container run -it debian
 
 docker container start -ai <container>
