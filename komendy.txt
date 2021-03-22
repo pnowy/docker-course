@@ -75,7 +75,7 @@ docker network disconnect {network} {container}
 - curl http://{ip}:8080/actuator/health
 
 - docker run --name wordpressdb -e MYSQL_ROOT_PASSWORD=wordpress -e MYSQL_DATABASE=wordpress -d mysql:5.7
-- docker run -e WORDPRESS_DB_PASSWORD=wordpress -d --name wordpress --link wordpressdb:mysql -p 80:80  wordpress
+- docker run -e WORDPRESS_DB_PASSWORD=wordpress -d --name wordpress --link wordpressdb:mysql -p 80:80  wordpress:5-php7.2
 - docker --link {containerId or name}:{internal alias}
 
 # obrazy - wprowadzenie         ---------------------------------------------------------------------------------
