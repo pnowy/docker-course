@@ -12,4 +12,4 @@ W razie zainteresowania kursem zapraszam na stronę Udemy lub kontakt pod adrese
 
 ![email](./img/email.png)
 
-Jeżeli zakupiłeś kurs lub korzystałeś z materiałów zachęcam do kliknięcia na [ ☆ Star] ;)
+Jeżeli zakupiłeś kurs lub korzystałeś z materiałów zachęcam do kliknięcia na [⭐ Star] 😉
