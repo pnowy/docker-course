@@ -2,6 +2,8 @@
 
 Wykład 1. Podstawowe informacje o kursie
 
+Wykład 1+. Aktualizacja 2023
+
 Wykład 2. Docker - wprowadzenie
 
 Wykład 3. Docker - architektura
@@ -15,6 +17,8 @@ Wykład 6. Instalacja Windows
 Wykład 7. Instalacja MacOS
 
 Wykład 8. Podsumowanie rozdziału
+
+Wykład 8+. Docker zmiany 2019 - 2023
 
 ---
 
@@ -105,6 +109,8 @@ Wykład 22. Budowanie obrazów część 1
 Wykład 23. Budowanie obrazów część 2
 
     - własny obraz - node
+
+Wykład 23+. Nowy silnik budowania obrazów - BuildKit [Aktualizacja 2023]
 
 Wykład 24. Obrazy porządki
 
