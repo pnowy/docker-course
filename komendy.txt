@@ -126,6 +126,15 @@ docker image push pnowy/ubuntu:curl
 docker image build -t myimage:mytag .
 
 # ---------------------------------------------------------------------------------
+# Obrazy - BuildKit
+# ---------------------------------------------------------------------------------
+
+DOCKER_BUILDKIT=1 docker build --no-cache -t node-api .
+DOCKER_BUILDKIT=0 docker build --no-cache -f node-api .
+docker buildx create --name vm --use --bootstrap
+docker buildx build --platform linux/arm64 --tag node-api --load
+
+# ---------------------------------------------------------------------------------
 # Obrazy - porządki
 # ---------------------------------------------------------------------------------
 
