@@ -112,6 +112,8 @@ Wykład 23. Budowanie obrazów część 2
 
 Wykład 23+. Nowy silnik budowania obrazów - BuildKit [Aktualizacja 2023]
 
+Wykład 23+. Multistage build [Aktualizacja 2023]
+
 Wykład 24. Obrazy porządki
 
     - usuwanie nieużywanych obrazów
