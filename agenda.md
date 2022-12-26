@@ -1,5 +1,10 @@
 # Spis treści
 
+
+## Wprowadzenie do kursu
+
+---
+
 Wykład 1. Podstawowe informacje o kursie
 
 Wykład 1+. Aktualizacja 2023
@@ -19,6 +24,8 @@ Wykład 7. Instalacja MacOS
 Wykład 8. Podsumowanie rozdziału
 
 Wykład 8+. Docker zmiany 2019 - 2023
+
+## Uruchamianie kontenerów
 
 ---
 
@@ -79,6 +86,8 @@ Wykład 17. Sieci - DNS
     - komunikacja pomiędzy kontenerami
     -- link option (for default bridge)
 
+## Budowanie obrazów
+
 ---
 
 Wykład 18. Obrazy - wprowadzenie
@@ -118,6 +127,14 @@ Wykład 24. Obrazy porządki
 
     - usuwanie nieużywanych obrazów
 
+## Docker - bezpieczeństwo
+
+---
+
+Wykład 4.1 Bezpieczeństwo - podstawy [Aktualizacja 2023]
+
+## Przechowywanie danych
+
 ---
 
 Wykład 25. Przechowywanie danych w kontenerach - wprowadzenie
@@ -128,6 +145,8 @@ Wykład 25. Przechowywanie danych w kontenerach - wprowadzenie
 Wykład 26. Volumes
 
 Wykład 27. Bind mounts
+
+## Docker compose
 
 ---
 
@@ -140,6 +159,8 @@ Wykład 29. Docker compose - komendy
 
 Wykład 30. Docker compose - build
 
+## Registry - przechowywanie obrazów
+
 ---
 
 Wykład 31. Docker Hub
@@ -147,6 +168,8 @@ Wykład 31. Docker Hub
 Wykład 32. Docker registry - lokalnie
 
 Wykład 33. Pozostałe opcje
+
+## Podsumowanie kursu
 
 ---
 
