@@ -172,6 +172,14 @@ run -v /Users/przemek/data:/path/data # (mac/linux)
 run -v //c/Users/przemek/data:/path/data # windows
 
 # ---------------------------------------------------------------------------------
+# Docker - bezpieczeństwo
+# ---------------------------------------------------------------------------------
+
+docker run -it --user=1000 busybox SSH
+docker run --cap-add=CAP_NET_ADMIN ubuntu:22.10 sleep 3600
+docker run --cap-drop=CAP_NET_ADMIN ubuntu:22.10 sleep 3600
+
+# ---------------------------------------------------------------------------------
 # Docker compose
 # ---------------------------------------------------------------------------------
 

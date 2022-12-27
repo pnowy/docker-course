@@ -133,6 +133,8 @@ Wykład 24. Obrazy porządki
 
 Wykład 4.1 Bezpieczeństwo - podstawy [Aktualizacja 2023]
 
+Wykład 4.2 Bezpieczeństwo - komendy i podstawy [Aktualizacja 2023]
+
 ## Przechowywanie danych
 
 ---
