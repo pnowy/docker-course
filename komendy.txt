@@ -175,9 +175,12 @@ run -v //c/Users/przemek/data:/path/data # windows
 # Docker - bezpieczeństwo
 # ---------------------------------------------------------------------------------
 
-docker run -it --user=1000 busybox SSH
+docker run -it --user=1000 busybox sh
 docker run --cap-add=CAP_NET_ADMIN ubuntu:22.10 sleep 3600
 docker run --cap-drop=CAP_NET_ADMIN ubuntu:22.10 sleep 3600
+docker run -d --user=1000:1000 ubuntu:22.10 sleep 3600
+docker run -d --name nginx-unp -p 8080:8080 nginxinc/nginx-unprivileged:1.23-alpine
+docker build -t app-non-root -f Dockerfile_rootless .
 
 # ---------------------------------------------------------------------------------
 # Docker compose

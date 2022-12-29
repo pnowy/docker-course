@@ -1,3 +1,0 @@
-FROM ubuntu:22.10
-
-USER 1000
