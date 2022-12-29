@@ -182,6 +182,15 @@ docker run -d --user=1000:1000 ubuntu:22.10 sleep 3600
 docker run -d --name nginx-unp -p 8080:8080 nginxinc/nginx-unprivileged:1.23-alpine
 docker build -t app-non-root -f Dockerfile_rootless .
 
+docker scan --version
+docker scan alpine:3.17
+docker scan osixia/openldap:1.5.0
+docker scan osixia/openldap:1.5.0 --severity high
+
+trivy image alpine:3.17
+trivy image osixia/openldap:1.5.0
+trivy image osixia/openldap:1.5.0 --severity=HIGH,CRITICAL
+
 # ---------------------------------------------------------------------------------
 # Docker compose
 # ---------------------------------------------------------------------------------
