@@ -216,3 +216,13 @@ curl -X GET http://localhost:5000/v2/nginx/tags/list
 docker image rm nginx
 docker image rm localhost:5000/nginx
 docker pull localhost:5000/nginx
+
+# ---------------------------------------------------------------------------------
+# Docker inne narzędzia
+# ---------------------------------------------------------------------------------
+
+podman machine init
+podman machine start
+podman machine ssh
+podman run --name nginx -p 8080:80 nginx
+

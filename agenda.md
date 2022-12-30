@@ -175,6 +175,14 @@ Wykład 32. Docker registry - lokalnie
 
 Wykład 33. Pozostałe opcje
 
+## Docker - pozostałe tematy
+
+---
+
+Wykład Docker - dobre praktyki [Aktualizacja 2023]
+
+Wykład Inne narzędzia [Aktualizacja 2023]
+
 ## Podsumowanie kursu
 
 ---
