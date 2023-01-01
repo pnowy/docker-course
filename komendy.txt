@@ -10,7 +10,9 @@ docker version
 # dokładniejsze info o aktualnym stanie konfiguracji Dockera
 docker info
 
-# uruchamianie kontenera        ---------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
+# Uruchamianie kontenerów
+# ---------------------------------------------------------------------------------
 
 docker container run --publish 8080:80 nginx
     - pobranie obrazu nginx z registry Docker Hub
@@ -26,7 +28,9 @@ docker container top <container-id>
 
 docker container --help
 
-# wiele kontenerów              ---------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
+# Wiele kontenerów
+# ---------------------------------------------------------------------------------
 
 docker container run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -d docker.elastic.co/elasticsearch/elasticsearch:6.5.4
 
@@ -39,13 +43,17 @@ docker run -d --name rabbit-in-the-hole -p 8080:15672 rabbitmq:3-management
 docker container logs <container-id> -f
 docker image ls
 
-# monitorowanie kontenerów      ---------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
+# Monitorowanie kontenerów
+# ---------------------------------------------------------------------------------
 
 docker container top
 docker container inspect
 docker container stats
 
-# dostęp do terminala           ---------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
+# Dostęp do terminala
+# ---------------------------------------------------------------------------------
 
 # -i => tryb interaktywny, przesyła standardowy output do naszej konsoli
 # -t => symuluje terminal, podobnie jak SSH
@@ -54,41 +62,51 @@ docker container run -it debian
 docker container start -ai <container>
 docker container exec -it <container> <command>
 
-# docker - sieci                ---------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
+# Docker - sieci
+# ---------------------------------------------------------------------------------
 
 docker network --help
 docker network ls
 docker network inspect bridge
 docker container inspect --format '{{ .NetworkSettings.IPAddress }}' <container>
 
-# sieci - zarządzanie & DNS     ---------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
+# Sieci - zarządzanie & DNS
+# ---------------------------------------------------------------------------------
 
 docker network create --driver=bridge {network}
 docker container run -d --network skynet nginx
 docker network connect {network} {container}
 docker network disconnect {network} {container}
 
-- docker container run --network=skynet -d --name=api pnowy/server-kotlin
-- docker container run --network=skynet -it ubuntu
-- apt-get update & apt-get install curl -y
-- curl http://api:8080/actuator/health
-- curl http://{ip}:8080/actuator/health
+docker container run --network=skynet -d --name=api pnowy/server-kotlin
+docker container run --network=skynet -it ubuntu
+apt-get update & apt-get install curl -y
+curl http://api:8080/actuator/health
+curl http://{ip}:8080/actuator/health
 
-- docker run --name wordpressdb -e MYSQL_ROOT_PASSWORD=wordpress -e MYSQL_DATABASE=wordpress -d mysql:5.7
-- docker run -e WORDPRESS_DB_PASSWORD=wordpress -d --name wordpress --link wordpressdb:mysql -p 80:80  wordpress:5-php7.2
-- docker --link {containerId or name}:{internal alias}
+docker run --name wordpressdb -e MYSQL_ROOT_PASSWORD=wordpress -e MYSQL_DATABASE=wordpress -d mysql:5.7
+docker run -e WORDPRESS_DB_PASSWORD=wordpress -d --name wordpress --link wordpressdb:mysql -p 80:80  wordpress:5-php7.2
+docker --link {containerId or name}:{internal alias}
 
-# obrazy - wprowadzenie         ---------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
+# Obrazy - wprowadzenie
+# ---------------------------------------------------------------------------------
 
 docker image ls
 docker image pull nginx
 
-# obrazy - warstwy              ---------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
+# Obrazy - warstwy
+# ---------------------------------------------------------------------------------
 
 docker image history nginx:latest
 docker image inspect nginx:latest
 
-# obrazy - tagowanie            ---------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
+# Obrazy - tagowanie
+# ---------------------------------------------------------------------------------
 
 docker image tag ubuntu:latest pnowy/ubuntu:latest
 docker image push pnowy/ubuntu
@@ -99,17 +117,38 @@ docker image tag pnowy/ubuntu:latest pnowy/ubuntu:1.0
 docker container commit {containerid} pnowy/ubuntu:curl
 docker image push pnowy/ubuntu:curl
 
-# obrazy - Dockerfile           ---------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
+# Obrazy - Dockerfile
+# ---------------------------------------------------------------------------------
 
 # REFERENCE: https://docs.docker.com/engine/reference/builder/
 
 docker image build -t myimage:mytag .
 
-# obrazy - porządki             ---------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
+# Obrazy - BuildKit
+# ---------------------------------------------------------------------------------
+
+DOCKER_BUILDKIT=1 docker build --no-cache -t node-api .
+DOCKER_BUILDKIT=0 docker build --no-cache -f node-api .
+docker buildx create --name vm --use --bootstrap
+docker buildx build --platform linux/arm64 --tag node-api --load
+
+# ---------------------------------------------------------------------------------
+# Obrazy - MultiStage build
+# ---------------------------------------------------------------------------------
+
+docker build -t go-api .
+
+# ---------------------------------------------------------------------------------
+# Obrazy - porządki
+# ---------------------------------------------------------------------------------
 
 docker system prune -a
 
-# volumes                       ---------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
+# Volumes
+# ---------------------------------------------------------------------------------
 
 curl -x POST http://localhost:3000/przemek1
 curl -x POST http://localhost:3000/przemek2
@@ -125,22 +164,48 @@ docker container run -d -p 3000:3000 --mount 'src=8ca2ef8645bd40700db261f29176d3
 docker container run -d -p 3000:3000 -v 8ca2ef8645bd40700db261f29176d3b1502bd1b40ee7127d62987c0398b7819c:/appdata nodesave
 docker container run -d -p 3000:3000 --mount 'src=nodesave-data,dst=/appdata' nodesave
 
-# bind mounts                   ---------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
+# Bind mounts
+# ---------------------------------------------------------------------------------
 
 run -v /Users/przemek/data:/path/data # (mac/linux)
 run -v //c/Users/przemek/data:/path/data # windows
 
-# docker compose                ---------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
+# Docker - bezpieczeństwo
+# ---------------------------------------------------------------------------------
+
+docker run -it --user=1000 busybox sh
+docker run --cap-add=CAP_NET_ADMIN ubuntu:22.10 sleep 3600
+docker run --cap-drop=CAP_NET_ADMIN ubuntu:22.10 sleep 3600
+docker run -d --user=1000:1000 ubuntu:22.10 sleep 3600
+docker run -d --name nginx-unp -p 8080:8080 nginxinc/nginx-unprivileged:1.23-alpine
+docker build -t app-non-root -f Dockerfile_rootless .
+
+docker scan --version
+docker scan alpine:3.17
+docker scan osixia/openldap:1.5.0
+docker scan osixia/openldap:1.5.0 --severity high
+
+trivy image alpine:3.17
+trivy image osixia/openldap:1.5.0
+trivy image osixia/openldap:1.5.0 --severity=HIGH,CRITICAL
+
+# ---------------------------------------------------------------------------------
+# Docker compose
+# ---------------------------------------------------------------------------------
 
 docker-compose up
-docker-compsoe up -d
+docker-compose up -d
 docker-compose down
 docker-compose ps
 docker-compose stop
 docker-compose logs
 docker-compose up --build
 
-# docker registry - lokalnie    ---------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
+# Docker registry - lokalnie
+# ---------------------------------------------------------------------------------
 
 docker container run -d -p 5000:5000 --name private-registry -v $(pwd)/registry-data:/var/lib/registry registry:2
 docker container run -d -p 5000:5000 --name private-registry registry:2
@@ -151,3 +216,14 @@ curl -X GET http://localhost:5000/v2/nginx/tags/list
 docker image rm nginx
 docker image rm localhost:5000/nginx
 docker pull localhost:5000/nginx
+
+# ---------------------------------------------------------------------------------
+# Docker inne narzędzia
+# ---------------------------------------------------------------------------------
+
+podman machine init
+podman machine start
+podman machine ssh
+podman run --name nginx -p 8080:80 nginx
+
+/kaniko/executor --context . --dockerfile Dockerfile --destination my-image

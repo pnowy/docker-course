@@ -1,36 +1,50 @@
 # Spis treści
 
-Wykład 1. Podstawowe informacje o kursie
+---
 
-Wykład 2. Docker - wprowadzenie
-
-Wykład 3. Docker - architektura
-
-Wykład 4. Koncepcje - obrazy, kontenery, registry
-
-Wykład 5. Instalacja Linux
-
-Wykład 6. Instalacja Windows
-
-Wykład 7. Instalacja MacOS
-
-Wykład 8. Podsumowanie rozdziału
+## Wprowadzenie do kursu
 
 ---
 
-Wykład 9. Komendy - wprowadzenie
+### Wykład. Podstawowe informacje o kursie
+
+### Wykład. Aktualizacja 2023 - agenda [Aktualizacja 2023]
+
+### Wykład. Docker 2019 - 2022 - co nowego [Aktualizacja 2023]
+
+### Wykład. Docker - wprowadzenie
+
+### Wykład. Docker - architektura
+
+### Wykład. Koncepcje - obrazy, kontenery, registry
+
+### Wykład. Instalacja Linux
+
+### Wykład. Instalacja Windows
+
+### Wykład. Instalacja MacOS
+
+### Wykład. Podsumowanie rozdziału
+
+---
+
+## Uruchamianie kontenerów
+
+---
+
+### Wykład. Komendy - wprowadzenie
 
     - docker version
     - docker info
     - komendy stary sposób vs nowy sposób
 
-Wykład 10. Uruchamienie kontenerów
+### Wykład. Uruchamienie kontenerów
 
     - obraz vs kontener - przypomnienie
     - uruchomienie/zatrzymanie/usunięcie kontenera (ngix + spring boot app)
     - sprawdzenie stanu kontenra (logi, procesy)
 
-Wykład 11. Proces uruchamiania kontenera
+### Wykład. Proces uruchamiania kontenera
 
     - docker container run --publish 8080:80 --detach --name=mynginx nginx
     - sprawdzenie czy obraz wymagany do uruchomienia kontenera znajduje się w lokalnym cache obrazów
@@ -41,104 +55,164 @@ Wykład 11. Proces uruchamiania kontenera
     - otwarcie portu 8080 na maszynie i przekazanie ruchu na port 80 na kontenerze
     - uruchomienie kontenera (komenda CMD w specyfikacji obrazu - Dockerfile)
 
-Wykład 12. Uruchamiamy wiele kontenerów
+### Wykład. Uruchamiamy wiele kontenerów
 
     - uruchomienie i praca lokalnie z Elasticsearch
     - uruchomienie lokalnie RabbitMq
 
-Wykład 13. Monitorowanie kontenerów
+### Wykład. Monitorowanie kontenerów
 
     - procesy w kontenerze
     - jak sprawdzić konfigurację kontenera
     - statystyki wydajności kontenera
 
-Wykład 14. Kontenery i dostęp do terminala
+### Wykład. Kontenery i dostęp do terminala
 
     - SSH i kontenery - jak dostać sie do terminala i uruchamiać komendy na kontenerze
     - do czego służą opcje -i oraz -t przy uruchamianiu kontenera
     - dystybucje Linux-a przystosowane do kontenerów
 
-Wykład 15. Docker - sieć
+### Wykład. Docker - sieć
 
     - rodzaje sieci w Dockerze
     - podstawowe komendy odnośnie sieci
 
-Wykład 16. Sieci - zarządzanie
+### Wykład. Sieci - zarządzanie
 
     - listing sieci / inspekcja sieci
     - tworzenie sieci
     - podłączanie kontenerów do sieci
 
-Wykład 17. Sieci - DNS
+### Wykład. Sieci - DNS
 
     - Docker DNS
     - komunikacja pomiędzy kontenerami
-    -- link option (for default bridge)
+    - link option (for default bridge)
 
 ---
 
-Wykład 18. Obrazy - wprowadzenie
+## Budowanie obrazów
+
+---
+
+### Wykład. Obrazy - wprowadzenie
 
     - czym jest obraz i do czego służą obrazy
     - Docker Registry, Docker Hub
     - obrazy - wersjonowanie
 
-Wykład 19. Obrazy - warstwy
+### Wykład. Obrazy - warstwy
 
     - czym jest warstwa (layer)
     - docker image history oraz docker image inspect
 
-Wykład 20. Obrazy - tagowanie
+### Wykład. Obrazy - tagowanie
 
     - tagowanie obrazów
     - zapis obrazów do Docker Hub
     - docker container commit
 
-Wykład 21. Obrazy - Dockerfile - omówienie
+### Wykład. Obrazy - Dockerfile - omówienie
 
     - omówienie przykładowego Dockerfile
 
-Wykład 22. Budowanie obrazów część 1
+### Wykład. Silnik budowania obrazów BuildKit [Aktualizacja 2023]
+
+    - omówienie nowego silnika budowania obrazów w Dockerze
+
+### Wykład. Budowanie obrazów część 1
 
     - własny obraz nginx
 
-Wykład 23. Budowanie obrazów część 2
+### Wykład. Budowanie obrazów część 2
 
     - własny obraz - node
 
-Wykład 24. Obrazy porządki
+### Wykład. Multistage build [Aktualizacja 2023]
+
+    - wykorzystanie multistage build dla języka golang
+
+### Wykład. Obrazy porządki
 
     - usuwanie nieużywanych obrazów
 
 ---
 
-Wykład 25. Przechowywanie danych w kontenerach - wprowadzenie
+## Docker - bezpieczeństwo [Aktualizacja 2023]
+
+---
+
+### Wykład. Bezpieczeństwo - podstawy [Aktualizacja 2023]
+
+    - omówienie podstaw bezpieczeństwa w Dockerze
+
+### Wykład. Bezpieczeństwo - komendy i podstawy [Aktualizacja 2023]
+
+    - omówienie podstawowych komend służących do przekazywania użytkownika
+
+### Wykład. Bezpieczeństwo - obraz rootless [Aktualizacja 2023]
+
+    - budowanie obrazu uruchamiającego proces na użytkowniku innym niż root
+
+### Wykład. Bezpieczeństwo - skanowanie obrazów [Aktualizacja 2023]
+
+    - omówienie możliwości w zakresie skanowania obrazów pod kątem bezpieczeństwa
+
+---
+
+## Przechowywanie danych
+
+---
+
+### Wykład. Przechowywanie danych w kontenerach - wprowadzenie
 
     - podejście do przechowywania danych w architekturze kontenerów
     - dostępne sposoby przychowywania w Docker
 
-Wykład 26. Volumes
+### Wykład. Volumes
 
-Wykład 27. Bind mounts
+### Wykład. Bind mounts
 
 ---
 
-Wykład 28. Docker compose - wprowadzenie
+## Docker compose
+
+---
+
+### Wykład. Docker compose - wprowadzenie
 
     - czym jest Docker compose
     - format pliku konfiguracyjnego
 
-Wykład 29. Docker compose - komendy
+### Wykład. Docker compose - komendy
 
-Wykład 30. Docker compose - build
+### Wykład. Docker compose - build
 
 ---
 
-Wykład 31. Docker Hub
+## Registry - przechowywanie obrazów
 
-Wykład 32. Docker registry - lokalnie
+---
 
-Wykład 33. Pozostałe opcje
+### Wykład. Docker Hub
+
+### Wykład. Docker registry - lokalnie
+
+### Wykład. Pozostałe opcje
+
+---
+
+## Docker - pozostałe tematy
+
+---
+
+### Wykład Docker - dobre praktyki [Aktualizacja 2023]
+
+### Wykład Inne narzędzia [Aktualizacja 2023]
+
+---
+
+## Podsumowanie kursu
 
 ---
 

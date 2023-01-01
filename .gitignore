@@ -1,3 +1,4 @@
 /docker-compose/commands/wordpress/wp-app/
 /docker-compose/introduction/elasticsearch/esdata/
+/dockerfiles/multistage-golang/app
 node_modules/
