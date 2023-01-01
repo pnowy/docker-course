@@ -196,7 +196,7 @@ trivy image osixia/openldap:1.5.0 --severity=HIGH,CRITICAL
 # ---------------------------------------------------------------------------------
 
 docker-compose up
-docker-compsoe up -d
+docker-compose up -d
 docker-compose down
 docker-compose ps
 docker-compose stop
@@ -226,3 +226,4 @@ podman machine start
 podman machine ssh
 podman run --name nginx -p 8080:80 nginx
 
+/kaniko/executor --context . --dockerfile Dockerfile --destination my-image
