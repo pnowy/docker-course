@@ -32,12 +32,15 @@ docker container --help
 # Wiele kontenerów
 # ---------------------------------------------------------------------------------
 
+# w nowszych wersjach Elasticsearch 8.X domyślne włączone jest security więc w przypadku chęci sprawdzenia najnowszej wersji
+# najlepiej sprawdzić wcześniej dokumentację: https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
 docker container run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -d docker.elastic.co/elasticsearch/elasticsearch:6.5.4
 
 curl -H "Content-Type: application/json" -XPOST "http://localhost:9200/docker/image/1" -d "{ \"name\" : \"elasticsearch\"}"
 curl localhost:9200/docker/_search
 curl localhost:9200/docker/image/1
 
+# user/pass do rabbit mq to guest/guest, więcej na https://hub.docker.com/_/rabbitmq
 docker run -d --name rabbit-in-the-hole -p 8080:15672 rabbitmq:3-management
 
 docker container logs <container-id> -f
