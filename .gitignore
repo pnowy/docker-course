@@ -2,3 +2,4 @@
 /docker-compose/introduction/elasticsearch/esdata/
 /dockerfiles/multistage-golang/app
 node_modules/
+.idea/
