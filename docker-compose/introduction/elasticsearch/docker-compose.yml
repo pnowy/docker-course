@@ -1,14 +1,31 @@
-version: '3.7'
-
 # docker container run -p 9200:9200 -e cluster.name=kursdockera -v $(pwd)/esdata:/usr/share/elasticsearch/data docker.elastic.co/elasticsearch/elasticsearch:6.5.4
 
-services: 
+services:
   elasticsearch:
     container_name: elasticsearch
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.5.4
-    volumes:
-      - ./esdata:/usr/share/elasticsearch/data
+    image: elasticsearch:7.16.1
     environment:
-      - cluster.name=kursdockera
+      discovery.type: single-node
+      cluster.name: "kursdockera"
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+      # - ./esdata:/usr/share/elasticsearch/data
     ports:
-        - 9200:9200
+      - "9200:9200"
+    healthcheck:
+      test: [ "CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1" ]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+  curl:
+    image: curlimages/curl:8.4.0
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    entrypoint: [ "sh", "-c" ]
+    command:
+      - curl http://elasticsearch:9200 && sleep infinity
+
+volumes:
+  esdata:
