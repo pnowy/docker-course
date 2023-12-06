@@ -1,5 +1,5 @@
-/docker-compose/commands/wordpress/wp-app/
-/docker-compose/introduction/elasticsearch/esdata/
+/compose/commands/wordpress/wp-app/
+/compose/introduction/elasticsearch/esdata/
 /dockerfiles/multistage-golang/app
 node_modules/
 .idea/
