@@ -1,4 +1,4 @@
-# docker container run -p 9200:9200 -e cluster.name=kursdockera -v $(pwd)/esdata:/usr/share/elasticsearch/data docker.elastic.co/elasticsearch/elasticsearch:6.5.4
+# docker container run -p 9200:9200 -e cluster.name=kursdockera -e discovery.type=single-node -e ES_JAVA_OPTS="-Xms512m -Xmx512m" -v $(pwd)/esdata:/usr/share/elasticsearch/data elasticsearch:7.16.1
 
 services:
   elasticsearch:
