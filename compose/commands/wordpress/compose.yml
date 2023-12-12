@@ -1,7 +1,7 @@
 services:
   db:
-    # obraz mariadb wspierajacy architektury amd64 & arm64
-    image: mariadb:10.6.4-focal
+    image: mysql:8.2.0
+    # domyślnie używany jest plugin unix_socket do autentykacji dlatego dodajemy command
     command: '--default-authentication-plugin=mysql_native_password'
     volumes:
       - db_data:/var/lib/mysql
