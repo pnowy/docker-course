@@ -1,0 +1,7 @@
+services:
+  db:
+    environment:
+      MYSQL_ROOT_PASSWORD: super_secret
+  wordpress:
+    ports:
+      - "8090:80"

@@ -1,0 +1,14 @@
+services:
+  api:
+    build:
+      context: ./api
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+  web:
+    image: nginx:1.25.3-alpine
+    volumes:
+      - ./html:/usr/share/nginx/html
+    ports:
+      - "8080:80"

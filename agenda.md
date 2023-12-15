@@ -179,14 +179,16 @@
 
 ---
 
-### Wykład. Docker compose - wprowadzenie
+### Wykład. Docker compose - wprowadzenie (część teoretyczna i praktyczna) [Aktualizacja 2024]
 
     - czym jest Docker compose
     - format pliku konfiguracyjnego
 
-### Wykład. Docker compose - komendy
+### Wykład. Docker compose - komendy, profile i nadpisywanie plików [Aktualizacja 2024]
 
-### Wykład. Docker compose - build
+### Wykład. Docker compose - build [Aktualizacja 2024]
+
+### Wykład. Docker compose - watch [Aktualizacja 2024]
 
 ---
 
@@ -216,6 +218,6 @@
 
 ---
 
-Wykład 34. Podsumowanie zdobytej wiedzy
+### Wykład 34. Podsumowanie zdobytej wiedzy
 
-Wykład 35. Co dalej i gdzie szukać dodatkowych informacji
+### Wykład 35. Co dalej i gdzie szukać dodatkowych informacji

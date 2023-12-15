@@ -1,0 +1,50 @@
+services:
+  db:
+    image: mysql:8.2.0
+    # domyślnie używany jest plugin unix_socket do autentykacji dlatego dodajemy command
+    command: '--default-authentication-plugin=mysql_native_password'
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+    expose:
+      - 3306
+      - 33060
+  wordpress:
+    depends_on:
+      db:
+        condition: service_healthy
+    image: wordpress:php8.2
+    volumes:
+      - ./wp-app:/var/www/html
+      #- ./plugin-name/:/var/www/html/wp-content/plugins/plugin-name # Plugin development
+      #- ./theme-name/:/var/www/html/wp-content/themes/theme-name # Theme development
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+  phpmyadmin:
+    image: phpmyadmin:5.2.1
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: always
+    environment:
+      PMA_ARBITRARY: "1"
+    profiles:
+      - phpmyadmin
+    ports:
+      - "8081:80"
+
+volumes:
+  db_data:

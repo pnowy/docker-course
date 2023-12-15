@@ -198,13 +198,15 @@ trivy image osixia/openldap:1.5.0 --severity=HIGH,CRITICAL
 # Docker compose
 # ---------------------------------------------------------------------------------
 
-docker-compose up
-docker-compose up -d
-docker-compose down
-docker-compose ps
-docker-compose stop
-docker-compose logs
-docker-compose up --build
+docker compose up
+docker compose up -d
+docker compose up --wait
+docker compose down
+docker compose ps
+docker compose stop
+docker compose logs
+docker compose up --build
+docker compose watch
 
 # ---------------------------------------------------------------------------------
 # Docker registry - lokalnie
