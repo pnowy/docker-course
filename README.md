@@ -1,6 +1,6 @@
 # [Docker od podstaw - dla programistów i nie tylko](https://www.udemy.com/course/docker-od-podstaw-dla-programistow-i-nie-tylko/?referralCode=39F9BBE841432712F0F4)
 
-> Aktualizacja 2023
+> Aktualizacja 2024
 
 ![logo](./img/logo.png)
 
