@@ -154,9 +154,9 @@
 
     - budowanie obrazu uruchamiającego proces na użytkowniku innym niż root
 
-### Wykład. Bezpieczeństwo - skanowanie obrazów [Aktualizacja 2023]
+### Wykład. Bezpieczeństwo - skanowanie obrazów [Aktualizacja 2024]
 
-    - omówienie możliwości w zakresie skanowania obrazów pod kątem bezpieczeństwa
+    - omówienie możliwości w zakresie skanowania obrazów pod kątem bezpieczeństwa (narzędzia Docker Scout oraz Trivy)
 
 ---
 
@@ -208,9 +208,13 @@
 
 ---
 
-### Wykład Docker - dobre praktyki [Aktualizacja 2023]
+### Docker init [Aktualizacja 2024]
 
-### Wykład Inne narzędzia [Aktualizacja 2023]
+### Apple Silicon a Docker (multiplatform) [Aktualizacja 2024]
+
+### Docker - dobre praktyki [Aktualizacja 2023]
+
+### Inne narzędzia [Aktualizacja 2023]
 
 ---
 
