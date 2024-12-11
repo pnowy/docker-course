@@ -2,9 +2,10 @@
 
 - Wprowadzenie do kursu
     - Podstawowe informacje o kursie
-    - Aktualizacja 2023 - agenda [2023]
-    - Docker 2019 - 2022 - co nowego [2023]
+    - Agenda kursu
+- Docker - wprowadznie
     - Docker - wprowadzenie
+    - Docker - rys historyczny, zalety i wady
     - Docker - architektura
     - Koncepcje - obrazy, kontenery, registry
     - Instalacja Windows
