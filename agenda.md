@@ -5,7 +5,7 @@
     - Agenda kursu
 - Docker - wprowadznie
     - Docker - wprowadzenie
-    - Docker - rys historyczny, zalety i wady
+    - Docker - rys historyczny
     - Docker - architektura
     - Koncepcje - obrazy, kontenery, registry
     - Instalacja Windows
