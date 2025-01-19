@@ -1,19 +1,25 @@
-# old way
+### Wprowadzenie do kursu
+
+```
+// old way
 docker <command> {options}
 
-# new way
+// new way
 docker <management-command> <sub-command> {options}
 
-# sprawdzenie wersji klienta (CLI) jak również serwera (Docker Engine)
+// sprawdzenie wersji klienta (CLI) jak również serwera (Docker Engine)
 docker version
 
-# dokładniejsze info o aktualnym stanie konfiguracji Dockera
+// sprawdzenie wersji narzędzia docker compose dostarczanego razem z dockerem
+docker compose version
+
+// dokładniejsze info o aktualnym stanie konfiguracji Dockera
 docker info
+```
 
-# ---------------------------------------------------------------------------------
-# Uruchamianie kontenerów
-# ---------------------------------------------------------------------------------
+### Uruchamianie kontenerów
 
+```
 docker container run --publish 8080:80 nginx
     - pobranie obrazu nginx z registry Docker Hub
     - utworzenie nowego kontenera na podstawie pobranego obrazu
@@ -27,57 +33,57 @@ docker container logs <container-id>
 docker container top <container-id>
 
 docker container --help
+```
 
-# ---------------------------------------------------------------------------------
-# Wiele kontenerów
-# ---------------------------------------------------------------------------------
+### Wiele kontenerów
 
-# w nowszych wersjach Elasticsearch 8.X domyślne włączone jest security więc w przypadku chęci sprawdzenia najnowszej wersji
-# najlepiej sprawdzić wcześniej dokumentację: https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
+```
+// w nowszych wersjach Elasticsearch 8.X domyślne włączone jest security więc w przypadku chęci sprawdzenia najnowszej wersji
+// najlepiej sprawdzić wcześniej dokumentację: https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
 docker container run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -d docker.elastic.co/elasticsearch/elasticsearch:6.5.4
 
 curl -H "Content-Type: application/json" -XPOST "http://localhost:9200/docker/image/1" -d "{ \"name\" : \"elasticsearch\"}"
 curl localhost:9200/docker/_search
 curl localhost:9200/docker/image/1
 
-# user/pass do rabbit mq to guest/guest, więcej na https://hub.docker.com/_/rabbitmq
+// user/pass do rabbit mq to guest/guest, więcej na https://hub.docker.com/_/rabbitmq
 docker run -d --name rabbit-in-the-hole -p 8080:15672 rabbitmq:3-management
 
 docker container logs <container-id> -f
 docker image ls
+```
 
-# ---------------------------------------------------------------------------------
-# Monitorowanie kontenerów
-# ---------------------------------------------------------------------------------
+### Monitorowanie kontenerów
 
+```
 docker container top
 docker container inspect
 docker container stats
+```
 
-# ---------------------------------------------------------------------------------
-# Dostęp do terminala
-# ---------------------------------------------------------------------------------
+### Dostęp do terminala
 
-# -i => tryb interaktywny, przesyła standardowy output do naszej konsoli
-# -t => symuluje terminal, podobnie jak SSH
+```
+// -i => tryb interaktywny, przesyła standardowy output do naszej konsoli
+// -t => symuluje terminal, podobnie jak SSH
 docker container run -it debian
 
 docker container start -ai <container>
 docker container exec -it <container> <command>
+```
 
-# ---------------------------------------------------------------------------------
-# Docker - sieci
-# ---------------------------------------------------------------------------------
+### Docker - sieci
 
+```
 docker network --help
 docker network ls
 docker network inspect bridge
 docker container inspect --format '{{ .NetworkSettings.IPAddress }}' <container>
+```
 
-# ---------------------------------------------------------------------------------
-# Sieci - zarządzanie & DNS
-# ---------------------------------------------------------------------------------
+### Sieci - zarządzanie & DNS
 
+```
 docker network create --driver=bridge {network}
 docker container run -d --network skynet nginx
 docker network connect {network} {container}
@@ -92,25 +98,25 @@ curl http://{ip}:8080/actuator/health
 docker run --name wordpressdb -e MYSQL_ROOT_PASSWORD=wordpress -e MYSQL_DATABASE=wordpress -d mysql:5.7
 docker run -e WORDPRESS_DB_PASSWORD=wordpress -d --name wordpress --link wordpressdb:mysql -p 80:80  wordpress:5-php7.2
 docker --link {containerId or name}:{internal alias}
+```
 
-# ---------------------------------------------------------------------------------
-# Obrazy - wprowadzenie
-# ---------------------------------------------------------------------------------
+### Obrazy - wprowadzenie
 
+```
 docker image ls
 docker image pull nginx
+```
 
-# ---------------------------------------------------------------------------------
-# Obrazy - warstwy
-# ---------------------------------------------------------------------------------
+### Obrazy - warstwy
 
+```
 docker image history nginx:latest
 docker image inspect nginx:latest
+```
 
-# ---------------------------------------------------------------------------------
-# Obrazy - tagowanie
-# ---------------------------------------------------------------------------------
+### Obrazy - tagowanie
 
+```
 docker image tag ubuntu:latest pnowy/ubuntu:latest
 docker image push pnowy/ubuntu
 docker login
@@ -119,40 +125,40 @@ docker image tag pnowy/ubuntu:latest pnowy/ubuntu:1.0
 
 docker container commit {containerid} pnowy/ubuntu:curl
 docker image push pnowy/ubuntu:curl
+```
 
-# ---------------------------------------------------------------------------------
-# Obrazy - Dockerfile
-# ---------------------------------------------------------------------------------
+### Obrazy - Dockerfile
 
-# REFERENCE: https://docs.docker.com/engine/reference/builder/
+##### REFERENCE: https://docs.docker.com/engine/reference/builder/
 
+```
 docker image build -t myimage:mytag .
+```
 
-# ---------------------------------------------------------------------------------
-# Obrazy - BuildKit
-# ---------------------------------------------------------------------------------
+### Obrazy - BuildKit
 
+```
 DOCKER_BUILDKIT=1 docker build --no-cache -t node-api .
 DOCKER_BUILDKIT=0 docker build --no-cache -f node-api .
 docker buildx create --name vm --use --bootstrap
 docker buildx build --platform linux/arm64 --tag node-api --load
+```
 
-# ---------------------------------------------------------------------------------
-# Obrazy - MultiStage build
-# ---------------------------------------------------------------------------------
+### Obrazy - MultiStage build
 
+```
 docker build -t go-api .
+```
 
-# ---------------------------------------------------------------------------------
-# Obrazy - porządki
-# ---------------------------------------------------------------------------------
+### Obrazy - porządki
 
+```
 docker system prune -a
+```
 
-# ---------------------------------------------------------------------------------
 # Volumes
-# ---------------------------------------------------------------------------------
 
+```
 curl -x POST http://localhost:3000/przemek1
 curl -x POST http://localhost:3000/przemek2
 
@@ -166,18 +172,18 @@ docker volume ls
 docker container run -d -p 3000:3000 --mount 'src=8ca2ef8645bd40700db261f29176d3b1502bd1b40ee7127d62987c0398b7819c,dst=/appdata' nodesave
 docker container run -d -p 3000:3000 -v 8ca2ef8645bd40700db261f29176d3b1502bd1b40ee7127d62987c0398b7819c:/appdata nodesave
 docker container run -d -p 3000:3000 --mount 'src=nodesave-data,dst=/appdata' nodesave
+```
 
-# ---------------------------------------------------------------------------------
-# Bind mounts
-# ---------------------------------------------------------------------------------
+### Bind mounts
 
+```
 run -v /Users/przemek/data:/path/data # (mac/linux)
 run -v //c/Users/przemek/data:/path/data # windows
+```
 
-# ---------------------------------------------------------------------------------
-# Docker - bezpieczeństwo
-# ---------------------------------------------------------------------------------
+### Docker - bezpieczeństwo
 
+```
 docker run -it --user=1000 busybox sh
 docker run --cap-add=CAP_NET_ADMIN ubuntu:22.10 sleep 3600
 docker run --cap-drop=CAP_NET_ADMIN ubuntu:22.10 sleep 3600
@@ -192,11 +198,11 @@ docker scout cves ubuntu:23.04 --only-fixed --only-severity critical,high
 
 trivy image ubuntu:23.04
 trivy image ubuntu:23.04 --severity=HIGH,CRITICAL
+```
 
-# ---------------------------------------------------------------------------------
-# Docker compose
-# ---------------------------------------------------------------------------------
+### Docker compose
 
+```
 docker compose up
 docker compose up -d
 docker compose up --wait
@@ -206,11 +212,11 @@ docker compose stop
 docker compose logs
 docker compose up --build
 docker compose watch
+```
 
-# ---------------------------------------------------------------------------------
-# Docker registry - lokalnie
-# ---------------------------------------------------------------------------------
+### Docker registry - lokalnie
 
+```
 docker container run -d -p 5000:5000 --name private-registry -v $(pwd)/registry-data:/var/lib/registry registry:2
 docker container run -d -p 5000:5000 --name private-registry registry:2
 docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
@@ -220,14 +226,15 @@ curl -X GET http://localhost:5000/v2/nginx/tags/list
 docker image rm nginx
 docker image rm localhost:5000/nginx
 docker pull localhost:5000/nginx
+```
 
-# ---------------------------------------------------------------------------------
-# Docker inne narzędzia
-# ---------------------------------------------------------------------------------
+### Docker inne narzędzia
 
+```
 podman machine init
 podman machine start
 podman machine ssh
 podman run --name nginx -p 8080:80 nginx
 
 /kaniko/executor --context . --dockerfile Dockerfile --destination my-image
+```

@@ -3,7 +3,7 @@
 - Wprowadzenie do kursu
     - Podstawowe informacje o kursie
     - Agenda kursu
-- Docker - wprowadznie
+- Docker - wprowadzenie
     - Docker - wprowadzenie
     - Docker - rys historyczny
     - Docker - architektura
