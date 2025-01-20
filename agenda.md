@@ -22,41 +22,41 @@
     - Docker - sieci
     - Sieci - zarządzanie
     - Sieci - DNS
-    - Uruchamienie kontenerów - test praktyczny
+    - Uruchamianie kontenerów - test praktyczny
 - Budowanie obrazów
     - Obrazy - wprowadzenie
     - Obrazy - warstwy
     - Obrazy - tagowanie
     - Obrazy - Dockerfile
-    - Silnik budowanie obrazów BuildKit [2023]
+    - Silnik budowania obrazów BuildKit
     - Własny obraz - nginx
     - Własny obraz - node
-    - Multistage build [2023]
+    - Multistage build
     - Obrazy - porządki
 - Przechowywanie danych
     - Przechowywanie danych - wprowadzenie
     - Volumes
     - Bind mounts
 - Docker - bezpieczeństwo
-    - Bezpieczeństwo - wprowadzenie [2023]
-    - Bezpieczeństwo - komendy i przykłady [2023]
-    - Obraz rootless [2023]
-    - Skanowanie obrazów [2024]
+    - Bezpieczeństwo - wprowadzenie
+    - Bezpieczeństwo - komendy i przykłady
+    - Obraz rootless
+    - Skanowanie obrazów
 - Docker compose
-    - Docker compose - wprowadzenie (część teoretyczna) [2024]
-    - Docker compose - wprowadzenie (część praktyczna) [2024]
-    - Docker compose - komendy, profile i nadpisywanie plików [2024]
-    - Docker compose - build [2024]
-    - Docker compose - watch [2024]
+    - Docker compose - wprowadzenie (część teoretyczna)
+    - Docker compose - wprowadzenie (część praktyczna)
+    - Docker compose - komendy, profile i nadpisywanie plików
+    - Docker compose - build
+    - Docker compose - watch
 - Registry - przechowywanie obrazów
     - DockerHub
     - Docker Registry - lokalnie
     - Pozostałe opcje
 - Pozostałe tematy
-    - Docker init [2024]
-    - Apple Silicon a Docker (Multiplatform build) [2024]
-    - Dobre praktyki [2023]
-    - Inne narzędzia [2023]
+    - Docker init
+    - Apple Silicon a Docker (Multiplatform build)
+    - Dobre praktyki
+    - Inne narzędzia
 - Podsumowanie kursu
     - Podsumowanie zdobytej wiedzy
     - Co dalej - gdzie szukać dodatkowych informacji
