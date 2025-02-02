@@ -1,10 +1,7 @@
 ### Wprowadzenie do kursu
 
 ```
-// old way
 docker <command> {options}
-
-// new way
 docker <management-command> <sub-command> {options}
 
 // sprawdzenie wersji klienta (CLI) jak również serwera (Docker Engine)
