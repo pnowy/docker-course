@@ -14,9 +14,10 @@
     - Podsumowanie rozdziału
 - Uruchamianie kontenerów
     - Komendy - wprowadzenie
-    - Uruchamianie kontenerów
+    - Uruchamianie kontenerów (część 1)
+    - Uruchamianie kontenerów (część 2)
     - Proces uruchamiania kontenerów
-    - Wiele kontenerów
+    - Uruchamianie kontenerów (część 3)
     - Monitorowanie kontenerów
     - Kontenery - terminal
     - Docker - sieci

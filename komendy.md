@@ -30,24 +30,11 @@ docker container logs <container-id>
 docker container top <container-id>
 
 docker container --help
-```
 
-### Wiele kontenerów
+docker run -d --name=grafana -p 3000:3000 grafana/grafana:11.5.1
+docker run -p 8080:80 kong/httpbin:0.2.3
 
-```
-// w nowszych wersjach Elasticsearch 8.X domyślne włączone jest security więc w przypadku chęci sprawdzenia najnowszej wersji
-// najlepiej sprawdzić wcześniej dokumentację: https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
-docker container run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -d docker.elastic.co/elasticsearch/elasticsearch:6.5.4
-
-curl -H "Content-Type: application/json" -XPOST "http://localhost:9200/docker/image/1" -d "{ \"name\" : \"elasticsearch\"}"
-curl localhost:9200/docker/_search
-curl localhost:9200/docker/image/1
-
-// user/pass do rabbit mq to guest/guest, więcej na https://hub.docker.com/_/rabbitmq
-docker run -d --name rabbit-in-the-hole -p 8080:15672 rabbitmq:3-management
-
-docker container logs <container-id> -f
-docker image ls
+curl http://localhost:8080/get
 ```
 
 ### Monitorowanie kontenerów
