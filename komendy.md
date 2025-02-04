@@ -40,8 +40,15 @@ curl http://localhost:8080/get
 ### Monitorowanie kontenerów
 
 ```
+docker run -d -p 9000:9000 --name=sonarqube sonarqube:9.9.8-community
+docker run -d -p 8080:80 --name=nginx nginx:1.27.3
+
 docker container top
+
 docker container inspect
+docker container inspect --format='{{ .NetworkSettings.IPAddress }}' sonarqube
+docker container inspect --format='{{ .Config.Env }}' nginx
+
 docker container stats
 ```
 
