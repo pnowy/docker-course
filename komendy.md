@@ -57,7 +57,9 @@ docker container stats
 ```
 // -i => tryb interaktywny, przesyła standardowy output do naszej konsoli
 // -t => symuluje terminal, podobnie jak SSH
-docker container run -it debian
+docker run -p 8080:80 -it --name=nginx nginx:1.27.3 bash
+
+docker container run -it --name=ubuntu ubuntu:25.04
 
 docker container start -ai <container>
 docker container exec -it <container> <command>
