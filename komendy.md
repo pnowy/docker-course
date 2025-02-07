@@ -78,19 +78,23 @@ docker container inspect --format '{{ .NetworkSettings.IPAddress }}' <container>
 
 ```
 docker network create --driver=bridge {network}
-docker container run -d --network skynet nginx
+docker network create skynet
+
 docker network connect {network} {container}
 docker network disconnect {network} {container}
+docker container run -d --network skynet nginx:1.27.3
 
-docker container run --network=skynet -d --name=api pnowy/server-kotlin
-docker container run --network=skynet -it ubuntu
-apt-get update & apt-get install curl -y
-curl http://api:8080/actuator/health
-curl http://{ip}:8080/actuator/health
+docker run -d --name api --network skynet kong/httpbin:0.2.3
+docker run -it --name client --network skynet pnowy/toolbox:3.0.0
 
-docker run --name wordpressdb -e MYSQL_ROOT_PASSWORD=wordpress -e MYSQL_DATABASE=wordpress -d mysql:5.7
-docker run -e WORDPRESS_DB_PASSWORD=wordpress -d --name wordpress --link wordpressdb:mysql -p 80:80  wordpress:5-php7.2
-docker --link {containerId or name}:{internal alias}
+curl http://{ip}/get
+curl http://api/get
+
+docker network create blog
+docker run --network blog --name wordpressdb  -e MYSQL_USER=wordpress -e MYSQL_PASSWORD=wordpress -e MYSQL_DATABASE=wordpress -e MYSQL_RANDOM_ROOT_PASSWORD='1' -d mysql:9.2.0
+docker run --network blog --name wordpress -e WORDPRESS_DB_HOST=wordpressdb -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_PASSWORD=wordpress -e WORDPRESS_DB_NAME=wordpress -d -p 8080:80  wordpress:6.7.1-php8.1-apache
+
+docker --link {containerId or name}:{internal alias} # legacy
 ```
 
 ### Obrazy - wprowadzenie
