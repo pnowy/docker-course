@@ -107,21 +107,22 @@ docker image pull nginx
 ### Obrazy - warstwy
 
 ```
-docker image history nginx:latest
-docker image inspect nginx:latest
+docker image history nginx:1.27.3
+docker image inspect nginx:1.27.3
 ```
 
 ### Obrazy - tagowanie
 
 ```
-docker image tag ubuntu:latest pnowy/ubuntu:latest
+docker image tag ubuntu:25.04 pnowy/ubuntu
 docker image push pnowy/ubuntu
 docker login
 docker logout
-docker image tag pnowy/ubuntu:latest pnowy/ubuntu:1.0
+docker image tag pnowy/ubuntu:latest pnowy/ubuntu:25.04
+docker image push pnowy/ubuntu:25.04
 
-docker container commit {containerid} pnowy/ubuntu:curl
-docker image push pnowy/ubuntu:curl
+docker container commit {containerid} pnowy/ubuntu:25.04-curl
+docker image push pnowy/ubuntu:25.04-curl
 ```
 
 ### Obrazy - Dockerfile
