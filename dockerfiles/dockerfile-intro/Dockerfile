@@ -9,6 +9,7 @@ LABEL org.opencontainers.image.authors="kursdockera@przemeknowak.com"
 # Set environment variables
 ENV MESSAGE="Hello from Docker!"
 ENV PORT=8080
+# ENV IMAGE_NAME="Docker"
 
 # Copy necessary files into the image
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
