@@ -1,3 +1,3 @@
 module przemeknowak.com/kursy/kurs-dockera
 
-go 1.19
+go 1.24
