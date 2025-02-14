@@ -133,19 +133,24 @@ docker image push pnowy/ubuntu:25.04-curl
 docker image build -t myimage:mytag .
 ```
 
-### Obrazy - BuildKit
-
-```
-DOCKER_BUILDKIT=1 docker build --no-cache -t node-api .
-DOCKER_BUILDKIT=0 docker build --no-cache -f node-api .
-docker buildx create --name vm --use --bootstrap
-docker buildx build --platform linux/arm64 --tag node-api --load
-```
-
 ### Obrazy - MultiStage build
 
 ```
 docker build -t go-api .
+```
+
+### Obrazy - BuildKit
+
+```
+docker buildx create --name vm --use --bootstrap
+docker buildx build --platform linux/amd64,linux/arm64 --load -t go-api .
+```
+
+Zmienna pozwala na wykorzystanie poprzedniego buildera (do momentu aż nie zostanie on usunięty):
+
+```
+DOCKER_BUILDKIT=1 docker build --no-cache -t go-api .
+DOCKER_BUILDKIT=0 docker build --no-cache -t go-api .
 ```
 
 ### Obrazy - porządki
