@@ -43,4 +43,4 @@ COPY . .
 EXPOSE 3000
 
 # Domyślna komenda uruchamiająca aplikację Node.js
-CMD ["node" "app.js"]
+CMD ["node", "app.js"]
