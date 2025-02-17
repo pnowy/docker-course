@@ -156,7 +156,9 @@ DOCKER_BUILDKIT=0 docker build --no-cache -t go-api .
 ### Obrazy - porządki
 
 ```
-docker system prune -a
+docker system prune
+docker system prune --all
+docker system prune --volumes
 ```
 
 # Volumes
