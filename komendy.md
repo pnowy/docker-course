@@ -166,17 +166,20 @@ docker system prune --volumes
 ```
 curl -X POST http://localhost:3000/docker1
 curl -X POST http://localhost:3000/docker2
+curl http://localhost:3000/
 
 docker build -t nodesave .
-docker image inspect nodesave:latest
+docker volume create messages
 docker volume ls
-docker container run -d -p 3000:3000 nodesave
-docker container inspect {containerId}
-docker container ls
-docker volume ls
-docker container run -d -p 3000:3000 --mount 'src=8ca2ef8645bd40700db261f29176d3b1502bd1b40ee7127d62987c0398b7819c,dst=/appdata' nodesave
-docker container run -d -p 3000:3000 -v 8ca2ef8645bd40700db261f29176d3b1502bd1b40ee7127d62987c0398b7819c:/appdata nodesave
-docker container run -d -p 3000:3000 --mount 'src=nodesave-data,dst=/appdata' nodesave
+
+docker run -d -p 3000:3000 -v messages:/home/node nodesave
+docker run -d -p 3000:3000 --mount type=volume,source=messages,target=/home/node --name nodesave nodesave
+docker container inspect nodesave --format '{{ json .Mounts }}' | jq
+docker volume inspect messages | jq
+docker exec nodesave ls -l /home/node
+docker exec nodesave cat /home/node/messages.txt
+
+docker run -d -p 3000:3000 --mount type=volume,source=9c63d6f403e8995de5125b7229cec16d0397b463d16e0f805c9abfb06a30a027,target=/home/node --name nodesave nodesave
 ```
 
 ### Bind mounts
