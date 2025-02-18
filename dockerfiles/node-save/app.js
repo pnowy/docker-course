@@ -12,8 +12,12 @@ console.log(`APPDATA directory: ${appmessages}`)
 const app = express();
 
 app.get('/', (req, res) => {
-  const content = fs.readFileSync(appmessages, 'utf8');
-  res.send(content)
+  if (fs.existsSync(appmessages)) {
+    const content = fs.readFileSync(appmessages, 'utf8');
+    res.send(content);
+  } else {
+    res.send('No messages stored yet!');
+  }
 });
 
 app.post('/:message', function (req, res) {
