@@ -164,8 +164,8 @@ docker system prune --volumes
 # Volumes
 
 ```
-curl -x POST http://localhost:3000/przemek1
-curl -x POST http://localhost:3000/przemek2
+curl -X POST http://localhost:3000/docker1
+curl -X POST http://localhost:3000/docker2
 
 docker build -t nodesave .
 docker image inspect nodesave:latest

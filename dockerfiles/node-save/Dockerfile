@@ -1,20 +1,20 @@
-FROM node:10-slim
+FROM node:23.8.0-alpine
 
-# Create app directory
-WORKDIR /app
+ENV NODE_ENV=production
 
-# Install app dependencies
-COPY package*.json ./
-RUN npm install --only=production
+WORKDIR /usr/src/app
 
-# Copy application
+RUN --mount=type=bind,source=package.json,target=package.json \
+    --mount=type=bind,source=package-lock.json,target=package-lock.json \
+    --mount=type=cache,target=/root/.npm \
+    npm ci --omit=dev
+
+USER node
+
 COPY . .
 
-# RUN mkdir /appdata
-ENV APPDATA "/appdata/messages.txt"
-ENV NODE_ENV production
-
-VOLUME [ "/appdata" ]
+ENV APP_MESSAGES="/home/node/messages.txt"
+# VOLUME [ "/home/node" ]
 
 EXPOSE 3000
 
