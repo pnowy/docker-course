@@ -225,15 +225,16 @@ docker compose watch
 ### Docker registry - lokalnie
 
 ```
-docker container run -d -p 5000:5000 --name private-registry -v $(pwd)/registry-data:/var/lib/registry registry:2
-docker container run -d -p 5000:5000 --name private-registry registry:2
-docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
-docker tag nginx localhost:5000/nginx
+docker run -d -p 5000:5000 -v $(pwd)/registry-data:/var/lib/registry --name registry registry:2.8.3
+docker pull nginx:1.27.3
+docker tag nginx:1.27.3 localhost:5000/nginx:1.27.3
+docker push localhost:5000/nginx:1.27.3
+docker image ls
+docker image rm nginx:1.27.3
+docker image rm localhost:5000/nginx:1.27.3
+docker pull localhost:5000/nginx:1.27.3
 curl -X GET http://localhost:5000/v2/_catalog
 curl -X GET http://localhost:5000/v2/nginx/tags/list
-docker image rm nginx
-docker image rm localhost:5000/nginx
-docker pull localhost:5000/nginx
 ```
 
 ### Docker inne narzędzia
