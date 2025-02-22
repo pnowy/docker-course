@@ -1,6 +1,6 @@
 ### Wprowadzenie do kursu
 
-```
+```bash
 docker <command> {options}
 docker <management-command> <sub-command> {options}
 
@@ -16,7 +16,7 @@ docker info
 
 ### Uruchamianie kontenerów
 
-```
+```bash
 docker container run --publish 8080:80 nginx
     - pobranie obrazu nginx z registry Docker Hub
     - utworzenie nowego kontenera na podstawie pobranego obrazu
@@ -39,7 +39,7 @@ curl http://localhost:8080/get
 
 ### Monitorowanie kontenerów
 
-```
+```bash
 docker run -d -p 9000:9000 --name=sonarqube sonarqube:9.9.8-community
 docker run -d -p 8080:80 --name=nginx nginx:1.27.3
 
@@ -54,7 +54,7 @@ docker container stats
 
 ### Dostęp do terminala
 
-```
+```bash
 // -i => tryb interaktywny, przesyła standardowy output do naszej konsoli
 // -t => symuluje terminal, podobnie jak SSH
 docker run -p 8080:80 -it --name=nginx nginx:1.27.3 bash
@@ -67,7 +67,7 @@ docker container exec -it <container> <command>
 
 ### Docker - sieci
 
-```
+```bash
 docker network --help
 docker network ls
 docker network inspect bridge
@@ -76,7 +76,7 @@ docker container inspect --format '{{ .NetworkSettings.IPAddress }}' <container>
 
 ### Sieci - zarządzanie & DNS
 
-```
+```bash
 docker network create --driver=bridge {network}
 docker network create skynet
 
@@ -99,21 +99,21 @@ docker --link {containerId or name}:{internal alias} # legacy
 
 ### Obrazy - wprowadzenie
 
-```
+```bash
 docker image ls
 docker image pull nginx
 ```
 
 ### Obrazy - warstwy
 
-```
+```bash
 docker image history nginx:1.27.3
 docker image inspect nginx:1.27.3
 ```
 
 ### Obrazy - tagowanie
 
-```
+```bash
 docker image tag ubuntu:25.04 pnowy/ubuntu
 docker image push pnowy/ubuntu
 docker login
@@ -129,33 +129,33 @@ docker image push pnowy/ubuntu:25.04-curl
 
 ##### REFERENCE: https://docs.docker.com/engine/reference/builder/
 
-```
+```bash
 docker image build -t myimage:mytag .
 ```
 
 ### Obrazy - MultiStage build
 
-```
+```bash
 docker build -t go-api .
 ```
 
 ### Obrazy - BuildKit
 
-```
+```bash
 docker buildx create --name vm --use --bootstrap
 docker buildx build --platform linux/amd64,linux/arm64 --load -t go-api .
 ```
 
 Zmienna pozwala na wykorzystanie poprzedniego buildera (do momentu aż nie zostanie on usunięty):
 
-```
+```bash
 DOCKER_BUILDKIT=1 docker build --no-cache -t go-api .
 DOCKER_BUILDKIT=0 docker build --no-cache -t go-api .
 ```
 
 ### Obrazy - porządki
 
-```
+```bash
 docker system prune
 docker system prune --all
 docker system prune --volumes
@@ -163,7 +163,7 @@ docker system prune --volumes
 
 # Volumes
 
-```
+```bash
 curl -X POST http://localhost:3000/docker1
 curl -X POST http://localhost:3000/docker2
 curl http://localhost:3000/
@@ -184,14 +184,14 @@ docker run -d -p 3000:3000 --mount type=volume,source=9c63d6f403e8995de5125b7229
 
 ### Bind mounts
 
-```
+```bash
 run -v /Users/przemek/data:/path/data # (mac/linux)
 run -v //c/Users/przemek/data:/path/data # windows
 ```
 
 ### Docker - bezpieczeństwo
 
-```
+```bash
 docker run -it --user=1000 busybox sh
 docker run --cap-add=CAP_NET_ADMIN ubuntu:22.10 sleep 3600
 docker run --cap-drop=CAP_NET_ADMIN ubuntu:22.10 sleep 3600
@@ -210,7 +210,7 @@ trivy image ubuntu:23.04 --severity=HIGH,CRITICAL
 
 ### Docker compose
 
-```
+```bash
 docker compose up
 docker compose up -d
 docker compose up --wait
@@ -224,7 +224,7 @@ docker compose watch
 
 ### Docker registry - lokalnie
 
-```
+```bash
 docker run -d -p 5000:5000 -v $(pwd)/registry-data:/var/lib/registry --name registry registry:2.8.3
 docker pull nginx:1.27.3
 docker tag nginx:1.27.3 localhost:5000/nginx:1.27.3
@@ -237,9 +237,15 @@ curl -X GET http://localhost:5000/v2/_catalog
 curl -X GET http://localhost:5000/v2/nginx/tags/list
 ```
 
-### Docker inne narzędzia
+## Docker - Apple silicon (multiplatform)
+
+```bash
 
 ```
+
+### Docker inne narzędzia
+
+```bash
 podman machine init
 podman machine start
 podman machine ssh
