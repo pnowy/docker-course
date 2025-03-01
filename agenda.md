@@ -28,15 +28,18 @@
     - Obrazy - wprowadzenie
     - Obrazy - warstwy
     - Obrazy - tagowanie
-    - Obrazy - Dockerfile
-    - Silnik budowania obrazów BuildKit
+    - Obrazy - Dockerfile (część teoretyczna)
+    - Obrazy - Dockerfile (część praktyczna)
     - Własny obraz - nginx
-    - Własny obraz - node
+    - Obrazy - dystrybucje przystosowane do kontenerów
     - Multistage build
+    - Silnik budowania obrazów BuildKit
+    - Własny obraz - node
     - Obrazy - porządki
 - Przechowywanie danych
-    - Przechowywanie danych - wprowadzenie
-    - Volumes
+    - Przechowywanie danych - wprowadzenie (część teoretyczna)
+    - Volumes (część praktyczna 1)
+    - Volumes (część praktyczna 2)
     - Bind mounts
 - Docker - bezpieczeństwo
     - Bezpieczeństwo - wprowadzenie
