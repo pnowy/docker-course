@@ -7,10 +7,9 @@ const PORT = 3000;
 const HOST = '0.0.0.0';
 
 const responseJson = {
-    "message": "Kurs Dockera 2"
+    "message": "Kurs Dockera!"
 }
 
-// App
 const app = express();
 
 app.use(function(req, res, next) {

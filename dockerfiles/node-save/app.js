@@ -3,22 +3,26 @@
 const express = require('express');
 const fs = require('fs');
 
-// Constants
 const PORT = 3000;
 const HOST = '0.0.0.0';
 
-const appdata = process.env.APPDATA || './messages.txt'
-console.log(`APPDATA directory: ${appdata}`)
+const appmessages = process.env.APP_MESSAGES || './messages.txt'
+console.log(`APPDATA directory: ${appmessages}`)
 
 const app = express();
 
 app.get('/', (req, res) => {
-  var content = fs.readFileSync(appdata, 'utf8');
-  res.send(content)
+  if (fs.existsSync(appmessages)) {
+    const content = fs.readFileSync(appmessages, 'utf8');
+    res.send(content);
+  } else {
+    res.send('No messages stored yet!');
+  }
 });
 
 app.post('/:message', function (req, res) {
-  fs.appendFileSync(appdata, req.params.message + '\n');
+  console.log(`Appending data to file with message=${req.params.message}`)
+  fs.appendFileSync(appmessages, req.params.message + '\n');
   res.send(`POST request to the homepage ${req.params.message}`)
 })
 
