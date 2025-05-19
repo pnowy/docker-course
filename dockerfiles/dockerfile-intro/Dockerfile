@@ -15,8 +15,8 @@ ENV PORT=8080
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY index.html /usr/local/share/index.html
 
-# Make sure the entrypoint script is executable
-RUN chmod +x /usr/local/bin/entrypoint.sh
+# Extra fix for Windows + make sure the entrypoint script is executable
+RUN sed -i 's/\r$//' /usr/local/bin/entrypoint.sh && chmod +x /usr/local/bin/entrypoint.sh
 
 # Expose the port where the server will run
 EXPOSE 8080
