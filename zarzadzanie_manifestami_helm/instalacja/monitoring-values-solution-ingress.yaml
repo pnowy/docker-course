@@ -1,12 +1,7 @@
-wordpressUsername: admin
-wordpressPassword: password
-mariadb:
-  auth:
-    rootPassword: secretpassword
-
-wordpressBlogName: Kurs Kubernetesa!
-memcached:
+adminPassword: admin123
+persistence:
   enabled: true
+  size: 1Gi
 
 service:
   type: ClusterIP

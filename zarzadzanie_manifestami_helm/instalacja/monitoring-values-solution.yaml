@@ -1,0 +1,4 @@
+adminPassword: admin123
+persistence:
+  enabled: true
+  size: 1Gi

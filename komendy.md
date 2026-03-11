@@ -181,15 +181,16 @@ helm install minikube-podinfo oci://ghcr.io/stefanprodan/charts/podinfo --versio
 kubectl get all                                                                                             # pobranie wszystkich obiektów z aktualnego namespace
 helm list --all-namespaces                                                                                  # listing zainstalowanych aplikacji (releases) we wszystkich namespace
 
-helm upgrade mypodinfo oci://ghcr.io/stefanprodan/charts/podinfo --set replicaCount=3                       # upgrade charta z ustawienie liczby replik na 3
-helm diff revision mypodinfo 1                                                                              # różnice pomiędzy rewizjami
-helm rollback mypodinfo 1                                                                                   # przywrócenie do konkretnej rewizji
-helm uninstall mypodinfo                                                                                    # odinstalowanie aplikacji (release)
-helm install blog --set wordpressUsername=admin --set wordpressPassword=password --set mariadb.auth.rootPassword=secretpassword oci://registry-1.docker.io/bitnamicharts/wordpress --version 16.1.33    # instalacja wordpress-a
-helm diff upgrade blog oci://registry-1.docker.io/bitnamicharts/wordpress --version 16.1.33 --values=blog-values.yaml       # podgląd zmian przed upgrade charta
-helm template blog oci://registry-1.docker.io/bitnamicharts/wordpress --version 16.1.33 --values=blog-values.yaml           # wygnerowanie manifestów lokalnie
-helm upgrade blog oci://registry-1.docker.io/bitnamicharts/wordpress --version 16.1.33 --values=blog-values.yaml            # upgrade release-u
-helm upgrade blog oci://registry-1.docker.io/bitnamicharts/wordpress --version 16.1.33 --values=blog-values.yaml --install  # upgrade lub instalacja jeżeli release nie istnieje
+helm upgrade minikube-podinfo oci://ghcr.io/stefanprodan/charts/podinfo --version 6.11.0 --set replicaCount=3      # upgrade charta z ustawienie liczby replik na 3
+helm history minikube-podinfo                                                                                      # historia rewizji
+helm rollback minikube-podinfo 1                                                                                   # przywrócenie do konkretnej rewizji
+helm uninstall minikube-podinfo                                                                                    # odinstalowanie aplikacji (release)
+
+helm install grafana oci://ghcr.io/grafana-community/helm-charts/grafana --version 11.3.2                                               # instalacja grafany
+helm template grafana oci://ghcr.io/grafana-community/helm-charts/grafana --version 11.3.2 --values=monitoring-values.yaml              # wygnerowanie manifestów lokalnie
+helm upgrade grafana oci://ghcr.io/grafana-community/helm-charts/grafana --version 11.3.2 --values=monitoring-values.yaml               # upgrade release-u
+helm upgrade grafana oci://ghcr.io/grafana-community/helm-charts/grafana --version 11.3.2 --values=monitoring-values.yaml --install     # upgrade lub instalacja jeżeli release nie istnieje
+
 mkcert --key-file key.pem --cert-file cert.pem wordpress.127.0.0.1.nip.io                                   # wygeneruj klucz i certyfikat za pomocą narzędzia mkcert
 kubectl create secret tls blog-tls --key key.pem --cert cert.pem                                            # utwórz secret
 helm template nginx-dev nginx                                                                               # template lokalnego charta (w folderze nginx)
