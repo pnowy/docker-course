@@ -177,7 +177,7 @@ helm search hub podinfo                                                         
 kubectl cofig set-context --current --namespace=helm
 helm pull oci://ghcr.io/stefanprodan/charts/podinfo --version 6.11.0                                        # pobranie charta podinfo w konkretnej wersji
 helm pull oci://ghcr.io/stefanprodan/charts/podinfo --version 6.11.0 --untar                                # pobranie charta podinfo w konkretnej wersji z automatycznym rozpakowaniem
-helm install podinfo-db oci://ghcr.io/stefanprodan/charts/podinfo --version 6.11.0                          # instalacja konkretnej wersji z domyślną konfiguracją
+helm install minikube-podinfo oci://ghcr.io/stefanprodan/charts/podinfo --version 6.11.0                    # instalacja konkretnej wersji z domyślną konfiguracją
 kubectl get all                                                                                             # pobranie wszystkich obiektów z aktualnego namespace
 helm list --all-namespaces                                                                                  # listing zainstalowanych aplikacji (releases) we wszystkich namespace
 
