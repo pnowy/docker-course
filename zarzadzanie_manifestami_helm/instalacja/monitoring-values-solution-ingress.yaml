@@ -3,15 +3,13 @@ persistence:
   enabled: true
   size: 1Gi
 
-service:
-  type: ClusterIP
 ingress:
   enabled: true
-  hostname: wordpress.127.0.0.1.nip.io
-  # mkcert --key-file key.pem --cert-file cert.pem wordpress.127.0.0.1.nip.io
-  # k create secret tls blog-tls --key key.pem --cert cert.pem
-  tls: true
-  extraTls:
-    - hosts:
-      - wordpress.127.0.0.1.nip.io
-      secretName: blog-tls
+  hosts:
+    - grafana.127.0.0.1.nip.io
+  # mkcert --key-file key.pem --cert-file cert.pem grafana.127.0.0.1.nip.io
+  # k create secret tls grafana-tls --key key.pem --cert cert.pem
+  tls: 
+    - secretName: grafana-tls
+      hosts:
+        - grafana.127.0.0.1.nip.io

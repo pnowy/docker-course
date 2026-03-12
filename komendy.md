@@ -191,8 +191,9 @@ helm template grafana oci://ghcr.io/grafana-community/helm-charts/grafana --vers
 helm upgrade grafana oci://ghcr.io/grafana-community/helm-charts/grafana --version 11.3.2 --values=monitoring-values.yaml               # upgrade release-u
 helm upgrade grafana oci://ghcr.io/grafana-community/helm-charts/grafana --version 11.3.2 --values=monitoring-values.yaml --install     # upgrade lub instalacja jeżeli release nie istnieje
 
-mkcert --key-file key.pem --cert-file cert.pem wordpress.127.0.0.1.nip.io                                   # wygeneruj klucz i certyfikat za pomocą narzędzia mkcert
-kubectl create secret tls blog-tls --key key.pem --cert cert.pem                                            # utwórz secret
+mkcert --key-file key.pem --cert-file cert.pem grafana.127.0.0.1.nip.io                                     # wygeneruj klucz i certyfikat za pomocą narzędzia mkcert
+kubectl create secret tls grafana-tls --key key.pem --cert cert.pem                                         # utwórz secret
+
 helm template nginx-dev nginx                                                                               # template lokalnego charta (w folderze nginx)
 helm install nginx-dev nginx                                                                                # instalacja lokalnego charta (w folderze nginx) 
 ```
