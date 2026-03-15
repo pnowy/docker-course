@@ -1,0 +1,4 @@
+configMap:
+  name: app-configuration
+  firstName: Hello
+  secondName: World

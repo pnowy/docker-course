@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configMap.name }}
+data:
+  FIRST_NAME: {{ .Values.configMap.firstName }}
+  SECOND_NAME: {{ .Values.configMap.secondName }}

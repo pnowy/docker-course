@@ -195,8 +195,8 @@ helm upgrade grafana oci://ghcr.io/grafana-community/helm-charts/grafana --versi
 mkcert --key-file key.pem --cert-file cert.pem grafana.127.0.0.1.nip.io                                     # wygeneruj klucz i certyfikat za pomocą narzędzia mkcert
 kubectl create secret tls grafana-tls --key key.pem --cert cert.pem                                         # utwórz secret
 
-helm template nginx-dev nginx                                                                               # template lokalnego charta (w folderze nginx)
-helm install nginx-dev nginx                                                                                # instalacja lokalnego charta (w folderze nginx) 
+helm template app-dev nginx                                                                                 # template lokalnego charta (w folderze nginx)
+helm install app-dev nginx                                                                                  # instalacja lokalnego charta (w folderze nginx) 
 ```
 
 ### Jobs && CronJobs
