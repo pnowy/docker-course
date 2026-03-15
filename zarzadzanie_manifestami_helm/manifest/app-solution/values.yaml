@@ -1,4 +1,0 @@
-configMap:
-  name: app-configuration
-  firstName: Kubernetes
-  lastName: Hello

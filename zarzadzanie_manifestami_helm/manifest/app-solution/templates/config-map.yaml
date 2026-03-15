@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Values.configMap.name }}
-data:
-  FIRST_NAME: {{ .Values.configMap.firstName }}
-  LAST_NAME: {{ .Values.configMap.lastName }}
