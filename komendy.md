@@ -186,6 +186,7 @@ helm history minikube-podinfo                                                   
 helm rollback minikube-podinfo 1                                                                                   # przywrócenie do konkretnej rewizji
 helm uninstall minikube-podinfo                                                                                    # odinstalowanie aplikacji (release)
 
+helm pull oci://ghcr.io/grafana-community/helm-charts/grafana --version 11.3.2 --untar                                                  # pobranie charta grafana w konkretnej wersji
 helm install grafana oci://ghcr.io/grafana-community/helm-charts/grafana --version 11.3.2                                               # instalacja grafany
 helm template grafana oci://ghcr.io/grafana-community/helm-charts/grafana --version 11.3.2 --values=monitoring-values.yaml              # wygnerowanie manifestów lokalnie
 helm upgrade grafana oci://ghcr.io/grafana-community/helm-charts/grafana --version 11.3.2 --values=monitoring-values.yaml               # upgrade release-u
