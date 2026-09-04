@@ -52,6 +52,23 @@ docker container inspect --format='{{ .Config.Env }}' nginx
 docker container stats
 ```
 
+### Polityki restartu kontenerów
+
+```bash
+docker run --name default-1 ubuntu:26.10 sh -c 'echo "Running..."; sleep 5; exit 0'
+docker run --name default-2 --restart no ubuntu:26.10 sh -c 'echo "Running..."; sleep 5; exit 1'
+docker ps -a
+
+docker run -d --name onfailure --restart on-failure:3 ubuntu:26.10 sh -c 'echo "Running..."; sleep 5; exit 1'
+docker inspect --format '{{.RestartCount}} {{.HostConfig.RestartPolicy.Name}}' onfailure
+
+docker run -d --name web --restart unless-stopped nginx:1.27.3
+docker stop web
+docker run -d --name always-web --restart always nginx:1.27.3
+docker stop always-web
+docker update --restart=unless-stopped always-web
+```
+
 ### Dostęp do terminala
 
 ```bash

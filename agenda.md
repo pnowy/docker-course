@@ -1,66 +1,67 @@
 ###  Docker od postaw - dla programistów i nie tylko
 
 - Wprowadzenie do kursu
-    - Podstawowe informacje o kursie
-    - Agenda kursu
+  - Podstawowe informacje o kursie
+  - Agenda kursu
 - Docker - wprowadzenie
-    - Docker - wprowadzenie
-    - Docker - rys historyczny
-    - Docker - architektura
-    - Koncepcje - obrazy, kontenery, registry
-    - Instalacja Windows
-    - Instalacja MacOS
-    - Instalacja Linux
-    - Podsumowanie rozdziału
+  - Docker - wprowadzenie (część teoretyczna)
+  - Docker - rys historyczny
+  - Docker - architektura
+  - Koncepcje - obrazy, kontenery, registry
+  - Instalacja Windows
+  - Instalacja MacOS
+  - Instalacja Linux
+  - Podsumowanie rozdziału
 - Uruchamianie kontenerów
-    - Komendy - wprowadzenie
-    - Uruchamianie kontenerów (część 1)
-    - Uruchamianie kontenerów (część 2)
-    - Proces uruchamiania kontenerów
-    - Uruchamianie kontenerów (część 3)
-    - Monitorowanie kontenerów
-    - Kontenery - terminal
-    - Docker - sieci
-    - Sieci - zarządzanie
-    - Sieci - DNS
-    - Uruchamianie kontenerów - test praktyczny
+  - Komendy - wprowadzenie
+  - Uruchamianie kontenerów (część 1)
+  - Uruchamianie kontenerów (część 2)
+  - Proces uruchamiania kontenerów
+  - Uruchamianie kontenerów (część 3)
+  - Monitorowanie kontenerów
+  - Polityki restartu kontenerów
+  - Kontenery - terminal
+  - Docker - sieci
+  - Sieci - zarządzanie
+  - Sieci - DNS
+  - Uruchamianie kontenerów - test praktyczny
 - Budowanie obrazów
-    - Obrazy - wprowadzenie
-    - Obrazy - warstwy
-    - Obrazy - tagowanie
-    - Obrazy - Dockerfile (część teoretyczna)
-    - Obrazy - Dockerfile (część praktyczna)
-    - Własny obraz - nginx
-    - Obrazy - dystrybucje przystosowane do kontenerów
-    - Multistage build
-    - Silnik budowania obrazów BuildKit
-    - Własny obraz - node
-    - Obrazy - porządki
+  - Obrazy - wprowadzenie
+  - Obrazy - warstwy
+  - Obrazy - tagowanie
+  - Obrazy - Dockerfile (część teoretyczna)
+  - Obrazy - Dockerfile (część praktyczna)
+  - Własny obraz - nginx
+  - Obrazy - dystrybucje przystosowane do kontenerów
+  - Multistage build
+  - Silnik budowania obrazów BuildKit
+  - Własny obraz - node
+  - Obrazy - porządki
 - Przechowywanie danych
-    - Przechowywanie danych - wprowadzenie (część teoretyczna)
-    - Volumes (część praktyczna 1)
-    - Volumes (część praktyczna 2)
-    - Bind mounts
+  - Przechowywanie danych - wprowadzenie (część teoretyczna)
+  - Volumes (część praktyczna 1)
+  - Volumes (część praktyczna 2)
+  - Bind mounts
 - Docker - bezpieczeństwo
-    - Bezpieczeństwo - wprowadzenie
-    - Bezpieczeństwo - komendy i przykłady
-    - Obraz rootless
-    - Skanowanie obrazów
+  - Bezpieczeństwo - wprowadzenie
+  - Bezpieczeństwo - komendy i przykłady
+  - Obraz rootless
+  - Skanowanie obrazów
 - Docker compose
-    - Docker compose - wprowadzenie (część teoretyczna)
-    - Docker compose - wprowadzenie (część praktyczna)
-    - Docker compose - komendy, profile i nadpisywanie plików
-    - Docker compose - build
-    - Docker compose - watch
+  - Docker compose - wprowadzenie (część teoretyczna)
+  - Docker compose - wprowadzenie (część praktyczna)
+  - Docker compose - komendy, profile i nadpisywanie plików
+  - Docker compose - build
+  - Docker compose - watch
 - Registry - przechowywanie obrazów
-    - DockerHub
-    - Docker Registry - lokalnie
-    - Pozostałe opcje
+  - DockerHub
+  - Docker Registry - lokalnie
+  - Pozostałe opcje
 - Pozostałe tematy
-    - Docker init
-    - Apple Silicon a Docker (Multiplatform build)
-    - Dobre praktyki
-    - Inne narzędzia
+  - Docker init
+  - Apple Silicon a Docker (Multiplatform build)
+  - Dobre praktyki
+  - Inne narzędzia
 - Podsumowanie kursu
-    - Podsumowanie zdobytej wiedzy
-    - Co dalej - gdzie szukać dodatkowych informacji
+  - Podsumowanie zdobytej wiedzy
+  - Co dalej - gdzie szukać dodatkowych informacji
