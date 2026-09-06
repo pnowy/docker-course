@@ -32,6 +32,7 @@
   - Obrazy - Dockerfile (część teoretyczna)
   - Obrazy - Dockerfile (część praktyczna)
   - Własny obraz - nginx
+  - Healthcheck - sprawdzanie stanu kontenera
   - Obrazy - dystrybucje przystosowane do kontenerów
   - Multistage build
   - Silnik budowania obrazów BuildKit

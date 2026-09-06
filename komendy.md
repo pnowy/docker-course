@@ -150,6 +150,27 @@ docker image push pnowy/ubuntu:25.04-curl
 docker image build -t myimage:mytag .
 ```
 
+### Healthcheck
+
+```bash
+docker run -d --name web-1 nginx:1.31.5
+docker ps # kolumna STATUS: Up X minutes
+
+docker build -t nginx-hc .
+docker run -d --name web-2 nginx-hc
+docker ps # kolumna STATUS: (health: starting) -> (healthy)
+
+docker exec -it web-2 bash
+rm /usr/share/nginx/html/index.html
+curl -fsS http://localhost/ ; echo "exit=$?"
+docker inspect --format '{{json .State.Health}}' web-2 | jq
+
+docker run -d --name web-3 \
+    --health-cmd='curl -fsS http://localhost/ || exit 1' \
+    --health-interval=10s --health-retries=3 \
+    nginx:1.31.5
+```
+
 ### Obrazy - MultiStage build
 
 ```bash
