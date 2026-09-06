@@ -1,0 +1,6 @@
+FROM nginx:1.31.5
+
+RUN apt update && apt install -y --no-install-recommends curl
+
+HEALTHCHECK --interval=10s --timeout=3s --retries=3 --start-period=5s \
+    CMD curl -fsS http://localhost/ || exit 1
