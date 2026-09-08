@@ -1,0 +1,14 @@
+# Wersja porównawcza - ten sam skrypt, ale bez tmpfs.
+#
+# /tmp/build jest zwykłym katalogiem w systemie plików kontenera budującego,
+# więc 300 MB danych tymczasowych ląduje w warstwie i zostaje w obrazie -
+# mimo że po zakończeniu instrukcji nikomu już nie są potrzebne.
+
+FROM debian:13.6
+
+COPY generate-artifacts.sh /usr/local/bin/generate-artifacts.sh
+RUN chmod +x /usr/local/bin/generate-artifacts.sh
+
+RUN mkdir -p /tmp/build && generate-artifacts.sh /tmp/build
+
+CMD ["cat", "/result.txt"]
