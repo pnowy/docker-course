@@ -1,15 +1,3 @@
-# Wersja porównawcza - klasyczne budowanie, bez żadnych mountów.
-#
-# Dwie rzeczy, które zobaczymy po zbudowaniu obu obrazów:
-#
-# 1. COPY poniżej tworzy osobną warstwę tylko po to, żeby dostarczyć npm listę
-#    zależności. Te pliki zostają w obrazie na zawsze, choć po instalacji nie
-#    są już nikomu potrzebne.
-#
-# 2. npm trzyma swój cache w /root/.npm, ale tutaj jest on częścią warstwy.
-#    Gdy warstwa zostanie unieważniona - a wystarczy zmiana jednej linii
-#    w package.json - cache znika razem z nią i pakiety lecą z sieci od nowa.
-
 FROM node:24.20.0-alpine
 
 ENV NODE_ENV=production
