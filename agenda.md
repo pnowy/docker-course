@@ -36,6 +36,8 @@
   - Obrazy - dystrybucje przystosowane do kontenerów
   - Multistage build
   - Silnik budowania obrazów BuildKit
+  - BuildKit - mounty w pliku Dockerfile
+  - Sekrety podczas budowania obrazu
   - Własny obraz - node
   - Obrazy - porządki
 - Przechowywanie danych

@@ -191,6 +191,31 @@ DOCKER_BUILDKIT=1 docker build --no-cache -t go-api .
 DOCKER_BUILDKIT=0 docker build --no-cache -t go-api .
 ```
 
+### BuildKit - mounty w pliku Dockerfile
+
+```bash
+docker build -t bm-node-no-mounts -f Dockerfile_no_mounts .
+docker build -t bm-node .
+
+docker run --rm bm-node ls /app
+docker run --rm bm-node ls -a /root/
+
+docker run --rm bm-node-no-mounts ls /app
+docker run --rm bm-node-no-mounts ls -a /root/
+
+docker build -t multistage .
+
+docker build -t bm-tmpfs -f Dockerfile .
+docker build -t bm-no-tmpfs -f Dockerfile_no_tmpfs .
+docker images --filter "reference=bm-tmpfs" --filter "reference=bm-no-tmpfs"
+```
+
+### Sekrety podczas budowania obrazu
+
+```bash
+
+```
+
 ### Obrazy - porządki
 
 ```bash
