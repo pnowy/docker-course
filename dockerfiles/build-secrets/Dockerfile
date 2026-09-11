@@ -1,10 +1,3 @@
-# DOBRZE - sekret podmontowany na czas jednej instrukcji RUN.
-#
-#   docker build --secret id=npmrc,src=npmrc.example -t bs-secret .
-#   docker history --no-trunc bs-secret | grep -i token   # nic
-#   docker inspect bs-secret --format '{{json .Config.Env}}'
-#
-# Sekret nie tworzy warstwy i nie zostaje w metadanych. Znika razem z instrukcją.
 FROM node:24.20.0-alpine
 
 ENV NODE_ENV=production
