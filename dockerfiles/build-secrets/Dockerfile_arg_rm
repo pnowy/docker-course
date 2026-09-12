@@ -7,9 +7,6 @@ ARG NPM_TOKEN
 
 COPY package.json package-lock.json ./
 
-# Wariant "usuwam plik na koncu, wiec chyba jest bezpiecznie".
-# rm jest tutaj w OSOBNEJ instrukcji RUN, wiec .npmrc trafia do warstwy nizej
-# i zostaje w obrazie na zawsze - kolejna warstwa dokłada tylko znacznik whiteout.
 RUN echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc && \
     npm ci --omit=dev
 
