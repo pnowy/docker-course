@@ -213,7 +213,30 @@ docker images --filter "reference=bm-tmpfs" --filter "reference=bm-no-tmpfs"
 ### Sekrety podczas budowania obrazu
 
 ```bash
+docker build --build-arg NPM_TOKEN=secret_token_1234 -t bs-arg -f Dockerfile_arg .
+docker history bs-arg
 
+docker build --build-arg NPM_TOKEN=secret_token_1234 -t bs-env -f Dockerfile_env .
+docker inspect bs-env --format '{{json .Config.Env}}'
+docker run --rm bs-env env | grep NPM_TOKEN
+
+docker build --build-arg NPM_TOKEN=secret_token_1234 -t bs-arg-rm -f Dockerfile_arg_rm .
+# w kontenerze pliku "nie ma"
+docker run --rm bs-arg-rm ls -la /app/.npmrc
+
+# ale w warstwie jest - szukamy po treści tokenu
+d=$(mktemp -d) && docker save bs-arg-rm | tar -x -C "$d"
+for b in "$d"/blobs/sha256/*; do
+  tar -tf "$b" >/dev/null 2>&1 || continue
+  tar -xOf "$b" 2>/dev/null | grep -qa secret_token_1234 && echo "TOKEN W WARSTWIE: $b"
+done
+
+# wypisanie pliku wprost z warstwy
+tar -xOf "$d"/blobs/sha256/<hash> app/.npmrc
+
+docker build --secret id=npmrc,src=npmrc.example -t bs-secret .
+docker history bs-secret
+docker inspect bs-secret --format '{{json .Config.Env}}'
 ```
 
 ### Obrazy - porządki
