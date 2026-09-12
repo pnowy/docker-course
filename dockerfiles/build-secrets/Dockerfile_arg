@@ -7,9 +7,6 @@ ARG NPM_TOKEN
 
 COPY package.json package-lock.json ./
 
-# Kasowanie pliku na końcu niczego nie ratuje z dwóch powodów:
-# token jest już w metadanych warstwy (powyżej), a gdyby rm był w osobnej
-# instrukcji RUN, sam plik zostałby w warstwie niżej.
 RUN echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc && \
     npm ci --omit=dev && \
     rm .npmrc
