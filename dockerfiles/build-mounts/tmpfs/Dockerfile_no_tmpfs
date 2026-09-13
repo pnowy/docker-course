@@ -1,0 +1,8 @@
+FROM debian:13.6
+
+COPY generate-artifacts.sh /usr/local/bin/generate-artifacts.sh
+RUN chmod +x /usr/local/bin/generate-artifacts.sh
+
+RUN mkdir -p /tmp/build && generate-artifacts.sh /tmp/build
+
+CMD ["cat", "/result.txt"]

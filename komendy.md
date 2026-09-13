@@ -52,6 +52,23 @@ docker container inspect --format='{{ .Config.Env }}' nginx
 docker container stats
 ```
 
+### Polityki restartu kontenerów
+
+```bash
+docker run --name default-1 ubuntu:26.10 sh -c 'echo "Running..."; sleep 5; exit 0'
+docker run --name default-2 --restart no ubuntu:26.10 sh -c 'echo "Running..."; sleep 5; exit 1'
+docker ps -a
+
+docker run -d --name onfailure --restart on-failure:3 ubuntu:26.10 sh -c 'echo "Running..."; sleep 5; exit 1'
+docker inspect --format '{{.RestartCount}} {{.HostConfig.RestartPolicy.Name}}' onfailure
+
+docker run -d --name web --restart unless-stopped nginx:1.27.3
+docker stop web
+docker run -d --name always-web --restart always nginx:1.27.3
+docker stop always-web
+docker update --restart=unless-stopped always-web
+```
+
 ### Dostęp do terminala
 
 ```bash
@@ -133,6 +150,27 @@ docker image push pnowy/ubuntu:25.04-curl
 docker image build -t myimage:mytag .
 ```
 
+### Healthcheck
+
+```bash
+docker run -d --name web-1 nginx:1.31.5
+docker ps # kolumna STATUS: Up X minutes
+
+docker build -t nginx-hc .
+docker run -d --name web-2 nginx-hc
+docker ps # kolumna STATUS: (health: starting) -> (healthy)
+
+docker exec -it web-2 bash
+rm /usr/share/nginx/html/index.html
+curl -fsS http://localhost/ ; echo "exit=$?"
+docker inspect --format '{{json .State.Health}}' web-2 | jq
+
+docker run -d --name web-3 \
+    --health-cmd='curl -fsS http://localhost/ || exit 1' \
+    --health-interval=10s --health-retries=3 \
+    nginx:1.31.5
+```
+
 ### Obrazy - MultiStage build
 
 ```bash
@@ -151,6 +189,54 @@ Zmienna pozwala na wykorzystanie poprzedniego buildera (do momentu aż nie zosta
 ```bash
 DOCKER_BUILDKIT=1 docker build --no-cache -t go-api .
 DOCKER_BUILDKIT=0 docker build --no-cache -t go-api .
+```
+
+### BuildKit - mounty w pliku Dockerfile
+
+```bash
+docker build -t bm-node-no-mounts -f Dockerfile_no_mounts .
+docker build -t bm-node .
+
+docker run --rm bm-node ls /app
+docker run --rm bm-node ls -a /root/
+
+docker run --rm bm-node-no-mounts ls /app
+docker run --rm bm-node-no-mounts ls -a /root/
+
+docker build -t multistage .
+
+docker build -t bm-tmpfs -f Dockerfile .
+docker build -t bm-no-tmpfs -f Dockerfile_no_tmpfs .
+docker images --filter "reference=bm-tmpfs" --filter "reference=bm-no-tmpfs"
+```
+
+### Sekrety podczas budowania obrazu
+
+```bash
+docker build --build-arg NPM_TOKEN=secret_token_1234 -t bs-arg -f Dockerfile_arg .
+docker history bs-arg
+
+docker build --build-arg NPM_TOKEN=secret_token_1234 -t bs-env -f Dockerfile_env .
+docker inspect bs-env --format '{{json .Config.Env}}'
+docker run --rm bs-env env | grep NPM_TOKEN
+
+docker build --build-arg NPM_TOKEN=secret_token_1234 -t bs-arg-rm -f Dockerfile_arg_rm .
+# w kontenerze pliku "nie ma"
+docker run --rm bs-arg-rm ls -la /app/.npmrc
+
+# ale w warstwie jest - szukamy po treści tokenu
+d=$(mktemp -d) && docker save bs-arg-rm | tar -x -C "$d"
+for b in "$d"/blobs/sha256/*; do
+  tar -tf "$b" >/dev/null 2>&1 || continue
+  tar -xOf "$b" 2>/dev/null | grep -qa secret_token_1234 && echo "TOKEN W WARSTWIE: $b"
+done
+
+# wypisanie pliku wprost z warstwy
+tar -xOf "$d"/blobs/sha256/<hash> app/.npmrc
+
+docker build --secret id=npmrc,src=npmrc.example -t bs-secret .
+docker history bs-secret
+docker inspect bs-secret --format '{{json .Config.Env}}'
 ```
 
 ### Obrazy - porządki
